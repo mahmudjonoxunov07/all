@@ -268,12 +268,10 @@ function renderGuide() {
 
   nav.innerHTML = weekLinks.map(([id, number, title]) => `<a class="guide-nav-link" href="guide.html?week=${id}" ${id === key ? 'aria-current="page"' : ''}><span>${number}</span><span>${title}</span></a>`).join('');
 
-  const topicIndex = guide.topics.map(([number, title]) => `<li><a href="#topic-${number}"><b>${number}</b>${escapeHTML(title)}</a></li>`).join('');
   const preview = (title, sample) => `<div class="output-preview"><iframe title="${escapeHTML(title)} output" sandbox="allow-scripts" srcdoc="${escapeHTML(createPreviewDocument(sample))}"></iframe></div>`;
-  const topicSections = guide.topics.map(([number, title, , sample]) => `<section class="guide-section" id="topic-${number}"><div class="section-label">Topic ${number}</div><h2>${escapeHTML(title)}</h2>${preview(title, sample)}</section>`).join('');
   const exercises = guide.exercises.map(([number, title, , answer]) => `<article class="exercise" id="${number.toLowerCase()}"><h3><span>${number}</span>${escapeHTML(title)}</h3>${preview(title, answer)}</article>`).join('');
 
-  content.innerHTML = `<header class="guide-hero"><div class="guide-kicker"><span>K0126002</span><span>${guide.number}</span><span>Gachon University</span></div><h1>${escapeHTML(guide.title)}</h1><div class="guide-meta"><span>${guide.topics.length} topics</span><span>${guide.exercises.length} completed exercises</span></div></header><section aria-labelledby="topic-index-title"><div class="section-heading"><p class="eyebrow">IN THIS GUIDE</p><h2 id="topic-index-title" class="guide-section">Topic index</h2></div><ol class="topic-list">${topicIndex}</ol></section>${topicSections}<section class="guide-section exercise-section" id="exercises"><div class="section-label">Practice · output</div><h2>Completed exercises</h2>${exercises}</section>`;
+  content.innerHTML = `<header class="guide-hero"><div class="guide-kicker"><span>K0126002</span><span>${guide.number}</span><span>Gachon University</span></div><h1>${escapeHTML(guide.title)}</h1></header><section class="guide-section exercise-section" id="exercises"><h2>Task output</h2>${exercises}</section>`;
 
   window.addEventListener('message', event => {
     if (event.data?.type !== 'preview-height') return;

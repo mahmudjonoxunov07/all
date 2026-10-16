@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Week 5 Web Programming exercise: a JavaScript click counter.">
+  <title>Week 5 - Click Counter | Web Programming</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="counter-page">
+  <header class="site-header">
+    <a class="wordmark" href="../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="../index.html">All weeks</a>
+  </header>
+  <main class="counter-main">
+    <section class="counter-panel" aria-labelledby="counter-title">
+      <p class="eyebrow">K0126002 · WEEK 5 EXERCISE</p>
+      <h1 id="counter-title">Click Counter</h1>
+      <p class="counter-description">Click the button to count. Reach five clicks to complete the exercise.</p>
+      <button class="counter-button" id="counter-button" type="button">Click me!</button>
+      <p class="count-line">Click count: <output id="count-display" aria-live="polite">0</output></p>
+      <p class="success-message" id="success-message" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · GACHON UNIVERSITY</span><a href="../index.html">Back to course materials</a></footer>
+</body>
+</html>

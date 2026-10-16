@@ -1,0 +1,98 @@
+.counter-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.counter-main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 48px 20px;
+}
+
+.counter-panel {
+  width: min(100%, 540px);
+  padding: clamp(28px, 6vw, 52px);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--green);
+  text-align: center;
+}
+
+.counter-panel h1 {
+  margin: 12px 0 8px;
+  font: 600 clamp(32px, 7vw, 48px)/1.15 var(--serif);
+}
+
+.counter-description {
+  max-width: 34ch;
+  margin: 0 auto 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.counter-button {
+  min-width: 180px;
+  min-height: 54px;
+  padding: 12px 24px;
+  border: 0;
+  background: var(--green);
+  color: white;
+  font: 700 15px var(--sans);
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+
+.counter-button:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.counter-button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 4px;
+}
+
+.counter-button.done,
+.counter-button.done:hover {
+  background: #16803c;
+  color: white;
+}
+
+.count-line {
+  margin: 24px 0 0;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#count-display {
+  display: inline-block;
+  min-width: 2ch;
+  color: var(--green);
+  font: 700 20px var(--mono);
+}
+
+.success-message {
+  min-height: 26px;
+  margin: 8px 0 0;
+  color: #16803c;
+  font-weight: 700;
+}
+
+@media (max-width: 480px) {
+  .counter-main {
+    padding: 32px 16px;
+  }
+
+  .counter-panel {
+    padding: 30px 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .counter-button {
+    transition: none;
+  }
+}

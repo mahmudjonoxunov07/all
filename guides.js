@@ -175,6 +175,91 @@ function escapeHTML(value) {
   return value.replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 }
 
+function createPreviewDocument(sample) {
+  const parsed = new DOMParser().parseFromString(sample, 'text/html');
+  const styles = [...parsed.querySelectorAll('style')].map(style => style.textContent).join('\n');
+  const scripts = [...parsed.querySelectorAll('script')].map(script => script.textContent).join('\n');
+  parsed.querySelectorAll('style, script').forEach(element => element.remove());
+
+  let markup = parsed.body.innerHTML;
+  let previewStyles = styles;
+  let previewScripts = scripts;
+  const isRawCode = !/^\s*</.test(sample);
+  const isJavaScript = isRawCode && (
+    /\b(?:document|window|console|const|let|var|if|for|function)\b|=>|\.addEventListener\s*\(|\.(?:textContent|innerHTML|classList|append|remove)\b/.test(sample)
+  );
+  const containsMarkup = markup.trim().length > 0;
+  const isCSS = !isJavaScript && !scripts && (
+    (!containsMarkup && styles.trim().length > 0) ||
+    (isRawCode && /[{}:;]/.test(sample))
+  );
+
+  if (isCSS) {
+    previewStyles = previewStyles.trim() ? previewStyles : sample;
+    markup = `<main class="css-preview">
+      <h1 id="main-title">Output preview</h1>
+      <p class="note">A paragraph styled by the sample.</p>
+      <nav><strong>GACHON</strong><a href="#">Home</a><a href="#">About</a></nav>
+      <button type="button">Preview button</button>
+      <article class="card"><span class="badge">NEW</span><h2 class="card-title">Sample card</h2><p>Card content</p></article>
+      <div class="notice">Notice</div>
+      <div class="swatch">Colour swatch</div>
+      <div class="row"><span class="item">One</span><span class="item">Two</span><span class="item">Three</span></div>
+      <div class="grid"><span class="item">Grid one</span><span class="item">Grid two</span><span class="item">Grid three</span></div>
+      <div class="relative">Positioning example<span class="badge">Badge</span></div>
+    </main>`;
+  } else if (isJavaScript) {
+    previewScripts = sample;
+    markup = `<main class="js-preview">
+      <h1 id="greeting">Interactive output</h1>
+      <p id="message">JavaScript output appears here.</p>
+      <label for="input">Type to interact</label><input id="input" placeholder="Type here">
+      <button id="button" type="button">Click to interact</button>
+      <p>Click count: <output id="count">0</output></p>
+      <article id="card" class="card"><h2 class="card-title">Sample card</h2><button id="theme-toggle" type="button">Toggle</button></article>
+      <div id="box" class="box">Content box</div>
+      <form id="form"><label for="todo-input">New task</label><input id="todo-input"><button type="submit">Add</button></form>
+      <ul id="list"><li class="item to-delete">Remove me <button class="delete" type="button">Remove</button></li></ul>
+      <ul><li class="student">Ari Kim</li><li class="student">Min Park</li><li class="student">Jisoo Lee</li></ul>
+      <pre id="console-output" aria-label="Console output"></pre>
+    </main>
+    <script>
+      window.message = document.querySelector('#message');
+      window.userInput = 'Preview text';
+      window.button = document.querySelector('#button');
+      window.card = document.querySelector('#card');
+      window.input = document.querySelector('#input');
+      window.form = document.querySelector('#form');
+      window.list = document.querySelector('#list');
+      window.box = document.querySelector('#box');
+      window.count = 0;
+      const previewConsole = document.querySelector('#console-output');
+      console.log = (...values) => { previewConsole.textContent += values.map(String).join(' ') + '\\n'; };
+    </script>`;
+  }
+
+  const securityPolicy = `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src https: data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'none'; form-action 'none'; base-uri 'none'">`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8">${securityPolicy}<meta name="viewport" content="width=device-width, initial-scale=1"><style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 20px; color: #172522; background: #fff; font: 15px/1.5 system-ui, sans-serif; }
+    img { max-width: 100%; height: auto; }
+    button, input { font: inherit; }
+    .css-preview > * { margin: 0 0 12px; }
+    .css-preview .card, .css-preview .notice, .css-preview .swatch, .css-preview .item, .css-preview .relative, .js-preview .card, .js-preview .box { padding: 12px; border: 1px solid #dce4dc; }
+    .css-preview .relative { position: relative; }
+    .css-preview .row, .css-preview .grid { display: flex; gap: 8px; }
+    .css-preview .badge { display: inline-block; }
+    .js-preview { display: grid; gap: 12px; }
+    .js-preview h1, .js-preview p, .js-preview ul { margin: 0; }
+    #console-output:empty { display: none; }
+  </style><style>${previewStyles}</style></head><body>${markup}<script>${previewScripts}</script><script>
+    const reportPreviewHeight = () => parent.postMessage({ type: 'preview-height', height: document.documentElement.scrollHeight }, '*');
+    new ResizeObserver(reportPreviewHeight).observe(document.documentElement);
+    window.addEventListener('load', reportPreviewHeight);
+    reportPreviewHeight();
+  </script></body></html>`;
+}
+
 function renderGuide() {
   const key = new URLSearchParams(window.location.search).get('week') || 'week2';
   const guide = guideData[key] || guideData.week2;
@@ -184,10 +269,21 @@ function renderGuide() {
   nav.innerHTML = weekLinks.map(([id, number, title]) => `<a class="guide-nav-link" href="guide.html?week=${id}" ${id === key ? 'aria-current="page"' : ''}><span>${number}</span><span>${title}</span></a>`).join('');
 
   const topicIndex = guide.topics.map(([number, title]) => `<li><a href="#topic-${number}"><b>${number}</b>${escapeHTML(title)}</a></li>`).join('');
-  const topicSections = guide.topics.map(([number, title, description, sample]) => `<section class="guide-section" id="topic-${number}"><div class="section-label">Topic ${number}</div><h2>${escapeHTML(title)}</h2><p>${escapeHTML(description)}</p><div class="sample-block"><div class="sample-head"><span>Sample</span><span>${guide.title}</span></div><pre><code>${escapeHTML(sample)}</code></pre></div></section>`).join('');
-  const exercises = guide.exercises.map(([number, title, description, answer]) => `<article class="exercise" id="${number.toLowerCase()}"><h3><span>${number}</span>${escapeHTML(title)}</h3><p>${escapeHTML(description)}</p><div class="answer-label">Completed solution</div><div class="sample-block"><div class="sample-head"><span>Answer</span><span>${guide.title}</span></div><pre><code>${escapeHTML(answer)}</code></pre></div></article>`).join('');
+  const preview = (title, sample) => `<div class="output-preview"><iframe title="${escapeHTML(title)} output" sandbox="allow-scripts" srcdoc="${escapeHTML(createPreviewDocument(sample))}"></iframe></div>`;
+  const topicSections = guide.topics.map(([number, title, , sample]) => `<section class="guide-section" id="topic-${number}"><div class="section-label">Topic ${number}</div><h2>${escapeHTML(title)}</h2>${preview(title, sample)}</section>`).join('');
+  const exercises = guide.exercises.map(([number, title, , answer]) => `<article class="exercise" id="${number.toLowerCase()}"><h3><span>${number}</span>${escapeHTML(title)}</h3>${preview(title, answer)}</article>`).join('');
 
-  content.innerHTML = `<header class="guide-hero"><div class="guide-kicker"><span>K0126002</span><span>${guide.number}</span><span>Gachon University</span></div><h1>${escapeHTML(guide.title)}</h1><p>${escapeHTML(guide.subtitle)}</p><div class="guide-meta"><span>${guide.topics.length} topics</span><span>${guide.exercises.length} completed exercises</span><span>Class activity notes</span></div></header><section aria-labelledby="topic-index-title"><div class="section-heading"><p class="eyebrow">IN THIS GUIDE</p><h2 id="topic-index-title" class="guide-section">Topic index</h2></div><ol class="topic-list">${topicIndex}</ol></section>${topicSections}<section class="guide-section exercise-section" id="exercises"><div class="section-label">Practice · solutions</div><h2>Completed exercises</h2><p class="exercise-intro">Solutions are written as standalone examples. Replace names, descriptions, and portfolio details with your own before submitting if your instructor expects personal work.</p>${exercises}</section><div class="callout"><strong>Review note:</strong> Check that your name and personal details are correct, test interactive examples in a browser, and make sure image alternative text describes the actual image you choose.</div>`;
+  content.innerHTML = `<header class="guide-hero"><div class="guide-kicker"><span>K0126002</span><span>${guide.number}</span><span>Gachon University</span></div><h1>${escapeHTML(guide.title)}</h1><div class="guide-meta"><span>${guide.topics.length} topics</span><span>${guide.exercises.length} completed exercises</span></div></header><section aria-labelledby="topic-index-title"><div class="section-heading"><p class="eyebrow">IN THIS GUIDE</p><h2 id="topic-index-title" class="guide-section">Topic index</h2></div><ol class="topic-list">${topicIndex}</ol></section>${topicSections}<section class="guide-section exercise-section" id="exercises"><div class="section-label">Practice · output</div><h2>Completed exercises</h2>${exercises}</section>`;
+
+  window.addEventListener('message', event => {
+    if (event.data?.type !== 'preview-height') return;
+    const frame = [...content.querySelectorAll('.output-preview iframe')]
+      .find(previewFrame => previewFrame.contentWindow === event.source);
+    const height = Number(event.data.height);
+    if (frame && Number.isFinite(height)) {
+      frame.style.height = `${Math.max(120, Math.min(height, 1800))}px`;
+    }
+  });
 
   document.title = `${guide.title} · Course Workbook`;
 }

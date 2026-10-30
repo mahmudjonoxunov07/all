@@ -710,6 +710,59 @@
   tab-size: 2;
 }
 
+.a11y-output-label {
+  margin: 0 0 6px;
+  color: #64736c;
+  font: 9px var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.a11y-browser-output {
+  min-height: 120px;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid #d9d5cb;
+  background: #fffefa;
+  color: #263c35;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.a11y-browser-output > div {
+  padding: 2px 0;
+}
+
+.a11y-browser-output-semantic {
+  display: flex;
+  flex-direction: column;
+}
+
+.a11y-browser-output-semantic p {
+  margin: 0;
+  padding: 5px 8px;
+}
+
+.a11y-browser-output-semantic .output-header,
+.a11y-browser-output-semantic .output-footer {
+  background: #e7eee5;
+}
+
+.a11y-browser-output-semantic .output-nav {
+  color: #425d50;
+}
+
+.a11y-browser-output-semantic .output-main {
+  flex: 1;
+  padding: 8px;
+}
+
+.a11y-browser-output-semantic h4 {
+  margin: 0 0 4px;
+  color: #263c35;
+  font-size: 15px;
+}
+
 .a11y-sr-example {
   margin: 0;
   color: #394742;

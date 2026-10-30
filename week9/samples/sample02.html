@@ -122,17 +122,37 @@
 &lt;div&gt;Article Title&lt;/div&gt;
 &lt;div&gt;Content here&lt;/div&gt;
 &lt;div&gt;Copyright 2026&lt;/div&gt;</code></pre>
+          <p class="a11y-output-label">Browser output</p>
+          <div class="a11y-browser-output" aria-label="Browser output: Home, About, Article Title, Content here, Copyright 2026">
+            <div>Home</div>
+            <div>About</div>
+            <div>Article Title</div>
+            <div>Content here</div>
+            <div>Copyright 2026</div>
+          </div>
           <p class="a11y-sr-example"><strong>A screen reader may announce:</strong> “group”, “group”, “Home, link”, “group”, “group”.</p>
         </article>
         <article class="a11y-example a11y-example-good">
           <h3>Semantic HTML · clear landmarks</h3>
-          <pre><code>&lt;header&gt;...&lt;/header&gt;
-&lt;nav aria-label="Main"&gt;...&lt;/nav&gt;
+          <pre><code>&lt;header&gt;Course site&lt;/header&gt;
+&lt;nav aria-label="Main"&gt;
+  &lt;a href="#page-title"&gt;Home&lt;/a&gt; · &lt;a href="#semantic-heading"&gt;About&lt;/a&gt;
+&lt;/nav&gt;
 &lt;main&gt;
   &lt;h1&gt;Article Title&lt;/h1&gt;
   &lt;p&gt;Content here&lt;/p&gt;
 &lt;/main&gt;
 &lt;footer&gt;Copyright 2026&lt;/footer&gt;</code></pre>
+          <p class="a11y-output-label">Browser output</p>
+          <div class="a11y-browser-output a11y-browser-output-semantic" aria-label="Browser output: Course site header, Home and About navigation, Article Title heading, Content here, Copyright 2026 footer">
+            <p class="output-header">Course site</p>
+            <p class="output-nav">Home <span aria-hidden="true">·</span> About</p>
+            <div class="output-main">
+              <h4>Article Title</h4>
+              <p>Content here</p>
+            </div>
+            <p class="output-footer">Copyright 2026</p>
+          </div>
           <p class="a11y-sr-example"><strong>A screen reader can identify:</strong> banner, navigation, main, and footer landmarks, plus an H1 heading.</p>
         </article>
       </div>

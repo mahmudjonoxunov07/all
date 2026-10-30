@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practice live validation with a friendly, browser-only registration form.">
+  <title>Registration Demo · Week 9 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../week6/style.css">
+  <link rel="stylesheet" href="../../week8/style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header">
+    <a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="../index.html">← Week 9</a>
+  </header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← Creative Coding Lab</a>
+    <section class="demo-intro">
+      <p class="eyebrow">WEEK 9 · INTERACTIVE LAB</p>
+      <h1>Make a good first impression.</h1>
+      <p>Complete the form to see clear, field-level feedback as you go. Your information stays in this browser.</p>
+    </section>
+    <section class="form-layout registration-layout" aria-label="Creative Coding Lab registration">
+      <aside class="form-aside">
+        <div class="aside-content">
+          <p class="aside-kicker">Creative Coding Lab</p>
+          <h2>A little more creative.</h2>
+          <p class="aside-copy">A few details are all it takes to start. We’ll let you know what needs attention along the way.</p>
+        </div>
+        <div class="aside-bottom"><span class="aside-dots" aria-hidden="true"><span></span><span></span><span></span></span>Helpful feedback, at every step</div>
+      </aside>
+      <div class="form-main">
+        <p class="eyebrow">Create your profile</p>
+        <h1>Let’s get started.</h1>
+        <p class="form-intro">All fields are required. Your password is never shown in the confirmation.</p>
+        <form id="registrationForm" novalidate>
+          <fieldset class="form-section">
+            <legend>Your details</legend>
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" required minlength="2" data-validate aria-describedby="fullNameError" placeholder="Your full name">
+              <p class="field-error" id="fullNameError"></p>
+            </div>
+            <div class="field">
+              <label for="studentId">Student ID</label>
+              <input type="text" id="studentId" name="studentId" required pattern="[0-9]{9}" inputmode="numeric" data-validate aria-describedby="studentIdError" placeholder="9-digit ID">
+              <p class="field-error" id="studentIdError"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" autocomplete="email" required data-validate aria-describedby="emailError" placeholder="you@example.com">
+              <p class="field-error" id="emailError"></p>
+            </div>
+          </fieldset>
+          <fieldset class="form-section">
+            <legend>Secure your account</legend>
+            <div class="field">
+              <label for="password">Create a password</label>
+              <input type="password" id="password" name="password" autocomplete="new-password" required minlength="8" data-validate aria-describedby="passwordHint passwordError" placeholder="At least 8 characters">
+              <p class="form-footnote" id="passwordHint">Use at least 8 characters.</p>
+              <p class="field-error" id="passwordError"></p>
+            </div>
+            <div class="field">
+              <label for="confirmPassword">Confirm password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" required data-validate aria-describedby="confirmPasswordError" placeholder="Enter your password again">
+              <p class="field-error" id="confirmPasswordError"></p>
+            </div>
+          </fieldset>
+          <button class="submit-button" type="submit">Create my profile <span aria-hidden="true">→</span></button>
+          <p class="form-footnote">Browser-only demo — details are not sent or stored.</p>
+        </form>
+        <section class="registration-summary" id="registrationSummary" aria-labelledby="summaryHeading" aria-live="polite" hidden>
+          <h2 id="summaryHeading">You’re all set!</h2>
+          <p>Your demo profile is ready. Here’s a safe summary of your details:</p>
+          <dl class="summary-list">
+            <div><dt>Name</dt><dd id="summaryName"></dd></div>
+            <div><dt>Student ID</dt><dd id="summaryStudentId"></dd></div>
+            <div><dt>Email</dt><dd id="summaryEmail"></dd></div>
+          </dl>
+        </section>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 9 lab</a></footer>
+  <script>
+    const form = document.querySelector('#registrationForm');
+    const fields = [...form.querySelectorAll('[data-validate]')];
+    const password = form.elements.password;
+    const confirmPassword = form.elements.confirmPassword;
+    const errorIds = {
+      fullName: 'fullNameError',
+      studentId: 'studentIdError',
+      email: 'emailError',
+      password: 'passwordError',
+      confirmPassword: 'confirmPasswordError'
+    };
+    const touched = new Set();
+
+    function getError(field) {
+      if (field.validity.valueMissing) {
+        return 'Please complete this field.';
+      }
+      if (field.id === 'studentId' && field.validity.patternMismatch) {
+        return 'Enter your 9-digit student ID.';
+      }
+      if (field.type === 'email' && field.validity.typeMismatch) {
+        return 'Enter a valid email address, like name@example.com.';
+      }
+      if (field.id === 'password' && field.validity.tooShort) {
+        return 'Use at least 8 characters for your password.';
+      }
+      if (field.id === 'confirmPassword' && field.value !== password.value) {
+        return 'Your passwords do not match yet.';
+      }
+      return '';
+    }
+
+    function updateField(field, showError) {
+      const error = showError ? getError(field) : '';
+      document.getElementById(errorIds[field.name]).textContent = error;
+      if (error) {
+        field.setAttribute('aria-invalid', 'true');
+      } else {
+        field.removeAttribute('aria-invalid');
+      }
+      return !error;
+    }
+
+    fields.forEach((field) => {
+      field.addEventListener('input', () => {
+        touched.add(field);
+        updateField(field, true);
+        if (field === password && touched.has(confirmPassword)) {
+          updateField(confirmPassword, true);
+        }
+      });
+      field.addEventListener('blur', () => {
+        touched.add(field);
+        updateField(field, true);
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      let firstInvalidField;
+
+      fields.forEach((field) => {
+        touched.add(field);
+        if (!updateField(field, true) && !firstInvalidField) {
+          firstInvalidField = field;
+        }
+      });
+
+      if (firstInvalidField) {
+        firstInvalidField.focus();
+        return;
+      }
+
+      document.getElementById('summaryName').textContent = form.elements.fullName.value.trim();
+      document.getElementById('summaryStudentId').textContent = form.elements.studentId.value;
+      document.getElementById('summaryEmail').textContent = form.elements.email.value;
+      document.getElementById('registrationSummary').hidden = false;
+      document.getElementById('registrationSummary').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  </script>
+</body>
+</html>

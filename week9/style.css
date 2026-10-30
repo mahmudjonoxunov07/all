@@ -738,29 +738,34 @@
   flex-direction: column;
 }
 
-.a11y-browser-output-semantic p {
-  margin: 0;
+.a11y-browser-output-semantic > header,
+.a11y-browser-output-semantic > nav,
+.a11y-browser-output-semantic > footer {
   padding: 5px 8px;
 }
 
-.a11y-browser-output-semantic .output-header,
-.a11y-browser-output-semantic .output-footer {
+.a11y-browser-output-semantic > header,
+.a11y-browser-output-semantic > footer {
   background: #e7eee5;
 }
 
-.a11y-browser-output-semantic .output-nav {
+.a11y-browser-output-semantic > nav {
   color: #425d50;
 }
 
-.a11y-browser-output-semantic .output-main {
+.a11y-browser-output-semantic > main {
   flex: 1;
   padding: 8px;
 }
 
-.a11y-browser-output-semantic h4 {
+.a11y-browser-output-semantic main h1 {
   margin: 0 0 4px;
   color: #263c35;
   font-size: 15px;
+}
+
+.a11y-browser-output-semantic main p {
+  margin: 0;
 }
 
 .a11y-sr-example {

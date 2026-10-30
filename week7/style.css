@@ -1,0 +1,158 @@
+.demo-panel > .search-form {
+  margin-bottom: 30px;
+}
+
+.book-results-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  margin-bottom: 17px;
+}
+
+.book-results-top h2 {
+  margin: 4px 0;
+  font: 600 25px/1.2 var(--serif);
+}
+
+.book-subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.book-count {
+  flex: 0 0 auto;
+  color: var(--green);
+  font: 10px var(--mono);
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.book-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.book-cover {
+  display: grid;
+  min-height: 190px;
+  place-items: center;
+  overflow: hidden;
+  background: #e8eee8;
+}
+
+.book-cover img {
+  display: block;
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.cover-placeholder {
+  color: var(--green);
+  font-size: 32px;
+}
+
+.book-info {
+  display: flex;
+  min-height: 119px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+}
+
+.book-info h3 {
+  margin: 0;
+  font: 600 14px/1.4 var(--serif);
+}
+
+.book-author {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.book-year {
+  margin-top: auto;
+  padding-top: 12px;
+  color: var(--green);
+  font: 9px var(--mono);
+}
+
+.book-status {
+  padding: 27px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.book-status[hidden] {
+  display: none;
+}
+
+.book-status-icon {
+  color: var(--green);
+  font-size: 24px;
+}
+
+.book-status h3 {
+  margin: 5px 0;
+  color: var(--ink);
+  font: 600 20px/1.3 var(--serif);
+}
+
+.book-status p {
+  margin: 0;
+  font-size: 11px;
+}
+
+.book-status.is-error .book-status-icon,
+.book-status.is-error h3 {
+  color: #b84132;
+}
+
+.book-skeleton {
+  min-height: 310px;
+  border: 1px solid var(--line);
+  background: linear-gradient(110deg, #edf0eb 8%, #f8faf7 18%, #edf0eb 33%);
+  background-size: 200% 100%;
+  animation: book-shimmer 1.4s linear infinite;
+}
+
+@keyframes book-shimmer {
+  to { background-position-x: -200%; }
+}
+
+@media (max-width: 760px) {
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .book-results-top h2 {
+    font-size: 21px;
+  }
+
+  .book-cover,
+  .book-cover img {
+    min-height: 160px;
+    height: 160px;
+  }
+
+  .book-skeleton {
+    min-height: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-skeleton {
+    animation: none;
+  }
+}

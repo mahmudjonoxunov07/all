@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find a city's current weather with Open-Meteo.">
+  <title>Country Weather · Week 6 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header"><a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a><a class="back-link" href="../index.html">← Week 6</a></header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← All Week 6 samples</a>
+    <section class="demo-intro"><p class="eyebrow">SAMPLE 04 · TWO API REQUESTS</p><h1>Country Weather</h1><p>Search a city to find its location, then request current conditions for that place.</p></section>
+    <section class="demo-panel" aria-label="Weather search">
+      <div class="demo-heading"><div><p class="eyebrow">OPEN-METEO</p><h2>How’s the weather?</h2></div></div>
+      <form class="search-form" id="weather-form" role="search">
+        <input id="city-input" type="search" placeholder="Enter a city, e.g. Seoul" aria-label="City name" autocomplete="off">
+        <button id="search-button" type="submit">Search weather</button>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite">Enter a city to see its weather.</p>
+      <section id="weather-card" class="weather-card" aria-label="Current weather" aria-live="polite">
+        <h2 id="city-name"></h2><p id="country-name" class="weather-country"></p>
+        <p id="temperature" class="weather-temperature"></p><p id="condition" class="weather-condition"></p>
+        <div class="weather-details">
+          <p class="weather-detail"><strong>Feels like</strong><span id="feels-like"></span></p>
+          <p class="weather-detail"><strong>Humidity</strong><span id="humidity"></span></p>
+          <p class="weather-detail"><strong>Wind speed</strong><span id="wind"></span></p>
+          <p class="weather-detail"><strong>Updated</strong><span id="updated"></span></p>
+        </div>
+      </section>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 6 samples</a></footer>
+  <script>
+    const cityInput = document.querySelector('#city-input');
+    const status = document.querySelector('#status');
+    const weatherCard = document.querySelector('#weather-card');
+    const searchButton = document.querySelector('#search-button');
+
+    function getCondition(code) {
+      if (code === 0) return '☀️ Clear sky';
+      if ([1, 2, 3].includes(code)) return '⛅ Partly cloudy';
+      if ([45, 48].includes(code)) return '🌫️ Fog';
+      if ([51, 53, 55, 56, 57].includes(code)) return '🌦️ Drizzle';
+      if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return '🌧️ Rain';
+      if ([71, 73, 75, 77, 85, 86].includes(code)) return '❄️ Snow';
+      if ([95, 96, 99].includes(code)) return '⛈️ Thunderstorm';
+      return '🌤️ Weather information';
+    }
+
+    document.querySelector('#weather-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const city = cityInput.value.trim();
+      if (!city) {
+        status.textContent = 'Please enter a city name.';
+        status.dataset.state = 'error';
+        weatherCard.classList.remove('is-visible');
+        cityInput.focus();
+        return;
+      }
+
+      status.textContent = 'Looking up current weather…';
+      status.dataset.state = 'loading';
+      weatherCard.classList.remove('is-visible');
+      searchButton.disabled = true;
+
+      try {
+        const geoUrl = new URL('https://geocoding-api.open-meteo.com/v1/search');
+        geoUrl.search = new URLSearchParams({ name: city, count: '1', language: 'en', format: 'json' });
+        const geoResponse = await fetch(geoUrl);
+        if (!geoResponse.ok) throw new Error(`City search responded with ${geoResponse.status}.`);
+        const geoData = await geoResponse.json();
+        const place = geoData.results?.[0];
+        if (!place) throw new Error('City not found. Try another name.');
+
+        const weatherUrl = new URL('https://api.open-meteo.com/v1/forecast');
+        weatherUrl.search = new URLSearchParams({
+          latitude: String(place.latitude),
+          longitude: String(place.longitude),
+          current: 'temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m,weather_code',
+          timezone: 'auto'
+        });
+        const weatherResponse = await fetch(weatherUrl);
+        if (!weatherResponse.ok) throw new Error(`Weather lookup responded with ${weatherResponse.status}.`);
+        const current = (await weatherResponse.json()).current;
+        if (!current) throw new Error('The response did not include current weather.');
+
+        document.querySelector('#city-name').textContent = place.name;
+        document.querySelector('#country-name').textContent = place.country || '';
+        document.querySelector('#temperature').textContent = `${Math.round(current.temperature_2m)}°C`;
+        document.querySelector('#condition').textContent = getCondition(current.weather_code);
+        document.querySelector('#feels-like').textContent = `${current.apparent_temperature}°C`;
+        document.querySelector('#humidity').textContent = `${current.relative_humidity_2m}%`;
+        document.querySelector('#wind').textContent = `${current.wind_speed_10m} km/h`;
+        document.querySelector('#updated').textContent = current.time.replace('T', ' ');
+        weatherCard.classList.add('is-visible');
+        status.textContent = 'Weather loaded successfully.';
+        status.dataset.state = 'success';
+      } catch (error) {
+        status.textContent = `Unable to load weather. ${error.message}`;
+        status.dataset.state = 'error';
+      } finally {
+        searchButton.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

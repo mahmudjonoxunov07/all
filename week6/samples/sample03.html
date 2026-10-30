@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Search a superhero directory and explore character profiles.">
+  <title>Hero Explorer · Week 6 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header"><a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a><a class="back-link" href="../index.html">← Week 6</a></header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← All Week 6 samples</a>
+    <section class="demo-intro"><p class="eyebrow">SAMPLE 03 · SEARCH A DATASET</p><h1>Hero Explorer</h1><p>Search a superhero directory and explore each character’s profile and power stats.</p></section>
+    <section class="demo-panel" aria-label="Hero explorer">
+      <div class="demo-heading"><div><p class="eyebrow">SUPERHERO API</p><h2>Find your hero</h2></div></div>
+      <form class="search-form" id="search-form" role="search">
+        <input id="hero-input" type="search" placeholder="Try Spider-Man…" aria-label="Search superheroes" autocomplete="off">
+        <button id="search-button" type="submit">Search heroes</button>
+      </form>
+      <p id="status" class="status" role="status" aria-live="polite">Loading the hero directory…</p>
+      <div id="heroes" class="hero-grid"></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 6 samples</a></footer>
+  <script>
+    const heroesContainer = document.querySelector('#heroes');
+    const heroInput = document.querySelector('#hero-input');
+    const status = document.querySelector('#status');
+    const searchButton = document.querySelector('#search-button');
+    let allHeroes = [];
+
+    function showHeroes(heroes, message) {
+      const cards = heroes.map((hero) => {
+        const card = document.createElement('article');
+        card.className = 'hero-card';
+        const image = document.createElement('img');
+        image.src = hero.images?.md || hero.images?.sm || '';
+        image.alt = hero.name ? `${hero.name} character art` : 'Hero character art';
+        image.loading = 'lazy';
+        const info = document.createElement('div');
+        info.className = 'hero-info';
+        const title = document.createElement('h2');
+        title.textContent = hero.name || 'Unknown hero';
+        const fullName = document.createElement('p');
+        fullName.textContent = `Full name: ${hero.biography?.fullName || 'Unknown'}`;
+        const publisher = document.createElement('p');
+        publisher.textContent = `Publisher: ${hero.biography?.publisher || 'Unknown'}`;
+        const power = document.createElement('p');
+        power.className = 'hero-stat';
+        const powerLabel = document.createElement('span');
+        powerLabel.textContent = 'Power';
+        const powerValue = document.createElement('strong');
+        powerValue.textContent = hero.powerstats?.power ?? 'N/A';
+        power.append(powerLabel, powerValue);
+        const intelligence = document.createElement('p');
+        intelligence.className = 'hero-stat';
+        const intelligenceLabel = document.createElement('span');
+        intelligenceLabel.textContent = 'Intelligence';
+        const intelligenceValue = document.createElement('strong');
+        intelligenceValue.textContent = hero.powerstats?.intelligence ?? 'N/A';
+        intelligence.append(intelligenceLabel, intelligenceValue);
+        info.append(title, fullName, publisher, power, intelligence);
+        card.append(image, info);
+        return card;
+      });
+
+      heroesContainer.replaceChildren(...cards);
+      status.textContent = message;
+      status.dataset.state = heroes.length ? 'success' : '';
+    }
+
+    async function getHeroes() {
+      status.textContent = 'Loading the hero directory…';
+      status.dataset.state = 'loading';
+      searchButton.disabled = true;
+
+      try {
+        const response = await fetch('https://akabab.github.io/superhero-api/api/all.json');
+        if (!response.ok) throw new Error(`The server responded with ${response.status}.`);
+        const heroes = await response.json();
+        if (!Array.isArray(heroes)) throw new Error('The response did not contain a hero list.');
+        allHeroes = heroes;
+        const initial = allHeroes.slice(0, 30);
+        showHeroes(initial, `Showing ${initial.length} heroes. Search by name to explore more.`);
+      } catch (error) {
+        status.textContent = `Could not load heroes. ${error.message}`;
+        status.dataset.state = 'error';
+      } finally {
+        searchButton.disabled = false;
+      }
+    }
+
+    function searchHeroes() {
+      if (!allHeroes.length) return;
+      const query = heroInput.value.trim().toLowerCase();
+      const filtered = allHeroes.filter((hero) => hero.name?.toLowerCase().includes(query));
+      const visible = filtered.slice(0, 60);
+      const message = filtered.length > visible.length
+        ? `Showing the first ${visible.length} of ${filtered.length} matching heroes.`
+        : `${visible.length} ${visible.length === 1 ? 'hero' : 'heroes'} found.`;
+      showHeroes(visible, message);
+    }
+
+    document.querySelector('#search-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      searchHeroes();
+    });
+    heroInput.addEventListener('input', searchHeroes);
+    getHeroes();
+  </script>
+</body>
+</html>

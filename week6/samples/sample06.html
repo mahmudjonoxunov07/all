@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Answer a live trivia question using the Open Trivia Database.">
+  <title>Trivia Time · Week 6 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header"><a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a><a class="back-link" href="../index.html">← Week 6</a></header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← All Week 6 samples</a>
+    <section class="demo-intro"><p class="eyebrow">SAMPLE 06 · FETCH AND INTERACT</p><h1>Trivia Time</h1><p>Challenge yourself with a live question and answers from a public trivia API.</p></section>
+    <section class="demo-panel" aria-label="Trivia quiz">
+      <div class="demo-heading"><div><p class="eyebrow">OPEN TRIVIA DB</p><h2>One question at a time</h2></div></div>
+      <button class="api-button" id="load-question" type="button">Get a question</button>
+      <p id="status" class="status" role="status" aria-live="polite">Ready when you are. Load a question to play.</p>
+      <section id="question-card" hidden aria-live="polite">
+        <p id="category" class="eyebrow"></p>
+        <h3 id="question" class="trivia-question"></h3>
+        <ol id="answers" class="answer-list"></ol>
+        <p id="result" class="trivia-result" role="status" aria-live="polite"></p>
+      </section>
+      <div class="trivia-actions"><button class="api-button" id="next-question" type="button" hidden>Next question</button><span class="score" id="score">SCORE · 0</span></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 6 samples</a></footer>
+  <script>
+    const loadButton = document.querySelector('#load-question');
+    const nextButton = document.querySelector('#next-question');
+    const status = document.querySelector('#status');
+    const questionCard = document.querySelector('#question-card');
+    const answersList = document.querySelector('#answers');
+    const result = document.querySelector('#result');
+    const scoreDisplay = document.querySelector('#score');
+    let score = 0;
+    let correctAnswer = '';
+
+    function decodeText(value) {
+      const decoder = document.createElement('textarea');
+      decoder.innerHTML = value;
+      return decoder.value;
+    }
+
+    async function loadQuestion() {
+      loadButton.disabled = true;
+      nextButton.hidden = true;
+      questionCard.hidden = true;
+      status.textContent = 'Loading a trivia question…';
+      status.dataset.state = 'loading';
+
+      try {
+        const response = await fetch('https://opentdb.com/api.php?amount=1&type=multiple');
+        if (!response.ok) throw new Error(`The server responded with ${response.status}.`);
+        const data = await response.json();
+        const questionData = data.results?.[0];
+        if (data.response_code !== 0 || !questionData) throw new Error('The API did not return a question.');
+
+        const choices = [...questionData.incorrect_answers, questionData.correct_answer]
+          .map(decodeText)
+          .sort(() => Math.random() - 0.5);
+        correctAnswer = decodeText(questionData.correct_answer);
+        document.querySelector('#category').textContent = decodeText(questionData.category);
+        document.querySelector('#question').textContent = decodeText(questionData.question);
+        result.textContent = '';
+        result.dataset.state = '';
+        answersList.replaceChildren(...choices.map((choice) => {
+          const item = document.createElement('li');
+          const answerButton = document.createElement('button');
+          answerButton.type = 'button';
+          answerButton.className = 'answer-button';
+          answerButton.textContent = choice;
+          answerButton.addEventListener('click', () => {
+            const isCorrect = choice === correctAnswer;
+            if (isCorrect) {
+              score += 1;
+              scoreDisplay.textContent = `SCORE · ${score}`;
+              result.textContent = 'Correct! Nice work.';
+              result.dataset.state = 'success';
+              answerButton.dataset.result = 'correct';
+            } else {
+              result.textContent = `Not quite. The correct answer is ${correctAnswer}.`;
+              result.dataset.state = 'error';
+              answerButton.dataset.result = 'incorrect';
+              for (const button of answersList.querySelectorAll('.answer-button')) {
+                if (button.textContent === correctAnswer) button.dataset.result = 'correct';
+              }
+            }
+            for (const button of answersList.querySelectorAll('.answer-button')) button.disabled = true;
+            nextButton.hidden = false;
+          });
+          item.append(answerButton);
+          return item;
+        }));
+
+        questionCard.hidden = false;
+        status.textContent = 'Choose your answer.';
+        status.dataset.state = 'success';
+      } catch (error) {
+        status.textContent = `Could not load a question. ${error.message}`;
+        status.dataset.state = 'error';
+      } finally {
+        loadButton.disabled = false;
+      }
+    }
+
+    loadButton.addEventListener('click', loadQuestion);
+    nextButton.addEventListener('click', loadQuestion);
+  </script>
+</body>
+</html>

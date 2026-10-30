@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practice JavaScript variables, DOM updates, user input, conditions, loops, and browser storage.">
+  <title>JavaScript Basics Lab | Week 5</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="basics.css">
+  <script src="basics.js" defer></script>
+</head>
+<body class="basics-page">
+  <header class="site-header">
+    <a class="wordmark" href="../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="index.html">← Week 5</a>
+  </header>
+  <main class="basics-main">
+    <section class="basics-hero" aria-labelledby="basics-title">
+      <p class="eyebrow">K0126002 · WEEK 5 EXERCISE 02</p>
+      <h1 id="basics-title">JavaScript Basics Lab</h1>
+      <p>Try each mini-demo to see how JavaScript stores information, changes a page, and makes decisions.</p>
+    </section>
+
+    <div class="basics-grid">
+      <section class="basics-panel" aria-labelledby="variables-heading">
+        <p class="lesson-number">01 · VARIABLES</p>
+        <h2 id="variables-heading">Variables and output</h2>
+        <p class="lesson-copy">Use <code>let</code> for a value that can change and <code>const</code> for a constant.</p>
+        <button type="button" id="show-output">Show output</button>
+        <p id="output" class="demo-output" aria-live="polite"></p>
+      </section>
+
+      <section class="basics-panel" aria-labelledby="change-heading">
+        <p class="lesson-number">02 · THE DOM</p>
+        <h2 id="change-heading">Change an element</h2>
+        <p id="message" class="demo-output">This text is ready to change.</p>
+        <button type="button" id="change-text">Change the text</button>
+      </section>
+
+      <section class="basics-panel" aria-labelledby="greet-heading">
+        <p class="lesson-number">03 · USER INPUT</p>
+        <h2 id="greet-heading">Say hello</h2>
+        <label class="field-label" for="name-input">Your name</label>
+        <input id="name-input" type="text" autocomplete="name" placeholder="e.g. Alex">
+        <button type="button" id="greet">Greet me</button>
+        <p id="greeting" class="demo-output" aria-live="polite"></p>
+      </section>
+
+      <section class="basics-panel" aria-labelledby="conditions-heading">
+        <p class="lesson-number">04 · CONDITIONS</p>
+        <h2 id="conditions-heading">Check a score</h2>
+        <label class="field-label" for="score-input">Score (0–100)</label>
+        <input id="score-input" type="number" min="0" max="100" step="1" placeholder="e.g. 85">
+        <button type="button" id="check-score">Check grade</button>
+        <p id="grade" class="demo-output" aria-live="polite"></p>
+      </section>
+
+      <section class="basics-panel" aria-labelledby="loops-heading">
+        <p class="lesson-number">05 · LOOPS</p>
+        <h2 id="loops-heading">Repeat with a loop</h2>
+        <p class="lesson-copy">A <code>for</code> loop can run the same instruction several times.</p>
+        <button type="button" id="run-loops">Run the loop</button>
+        <p id="loop-output" class="demo-output code-output" aria-live="polite"></p>
+      </section>
+
+      <section class="basics-panel" aria-labelledby="storage-heading">
+        <p class="lesson-number">06 · BROWSER STORAGE</p>
+        <h2 id="storage-heading">Save data locally</h2>
+        <label class="field-label" for="username">Username</label>
+        <input id="username" type="text" autocomplete="username" placeholder="Choose a username">
+        <div class="controls">
+          <button type="button" id="save-name">Save</button>
+          <button type="button" id="load-name" class="secondary">Load</button>
+          <button type="button" id="delete-name" class="secondary">Delete</button>
+        </div>
+        <p id="saved-output" class="demo-output" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="index.html">Back to Week 5 ↑</a></footer>
+</body>
+</html>

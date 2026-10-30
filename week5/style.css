@@ -81,6 +81,45 @@
   font-weight: 700;
 }
 
+.more-practice {
+  display: grid;
+  gap: 4px;
+  margin-top: 24px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  text-align: left;
+  text-decoration: none;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.more-practice:hover {
+  border-color: var(--green);
+  background: var(--paper);
+}
+
+.more-practice > span {
+  color: var(--green);
+  font: 10px var(--mono);
+  letter-spacing: .08em;
+}
+
+.more-practice strong {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.more-practice strong span {
+  color: var(--green);
+}
+
+.more-practice:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
 @media (max-width: 480px) {
   .counter-main {
     padding: 32px 16px;

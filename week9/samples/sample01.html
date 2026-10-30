@@ -105,6 +105,9 @@
       if (field.id === 'studentId' && field.validity.patternMismatch) {
         return 'Enter your 9-digit student ID.';
       }
+      if (field.id === 'fullName' && field.validity.tooShort) {
+        return 'Please enter at least 2 characters for your name.';
+      }
       if (field.type === 'email' && field.validity.typeMismatch) {
         return 'Enter a valid email address, like name@example.com.';
       }
@@ -130,6 +133,7 @@
 
     fields.forEach((field) => {
       field.addEventListener('input', () => {
+        document.getElementById('registrationSummary').hidden = true;
         touched.add(field);
         updateField(field, true);
         if (field === password && touched.has(confirmPassword)) {

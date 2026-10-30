@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a student enrollment form with grouped fields, HTML validation, and live input feedback.">
+  <title>Student Registration · Week 8 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../week6/style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header">
+    <a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="../index.html">← Week 8</a>
+  </header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← All Week 8 forms</a>
+    <section class="demo-intro"><p class="eyebrow">SAMPLE 02 · STUDENT REGISTRATION</p><h1>Your next chapter.</h1><p>Group related details and get immediate feedback as you complete the form.</p></section>
+    <section class="form-layout registration-layout" aria-label="Student registration">
+      <aside class="form-aside">
+        <div class="aside-content">
+          <p class="aside-kicker">Your next chapter</p>
+          <h2>Make room for what’s next.</h2>
+          <p class="aside-copy">Tell us a little about yourself and get started on your student journey.</p>
+        </div>
+        <div class="aside-bottom"><span class="aside-dots" aria-hidden="true"><span></span><span></span><span></span></span>A few details, a fresh start</div>
+      </aside>
+      <div class="form-main">
+        <p class="eyebrow">Student enrollment</p>
+        <h1>Let’s get to know you.</h1>
+        <p class="form-intro">Complete your details to create a student profile.</p>
+        <form id="registrationForm">
+          <fieldset class="form-section">
+            <legend>Personal details</legend>
+            <div class="field">
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" required minlength="2" placeholder="Your full name">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="studentId">Student ID</label>
+                <input type="text" id="studentId" name="studentId" required pattern="[0-9]{9}" inputmode="numeric" placeholder="9-digit ID" title="Enter your 9-digit student ID">
+              </div>
+              <div class="field">
+                <label for="dob">Date of birth</label>
+                <input type="date" id="dob" name="dob" autocomplete="bday" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="major">Academic major</label>
+              <select id="major" name="major" required>
+                <option value="">Choose your major</option>
+                <option>Computer Science</option>
+                <option>Software Engineering</option>
+                <option>Information Technology</option>
+                <option>Artificial Intelligence</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="form-section">
+            <legend>Account details</legend>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input type="email" id="email" name="email" autocomplete="email" required placeholder="student@example.edu">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="password">Create a password</label>
+                <input type="password" id="password" name="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters">
+              </div>
+              <div class="field">
+                <label for="phone">Phone number</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" placeholder="010-1234-5678" title="Use the format 010-1234-5678">
+              </div>
+            </div>
+            <div class="field">
+              <label for="experience">Coding experience <span class="optional">(years)</span></label>
+              <div class="range-row">
+                <input type="range" id="experience" name="experience" min="0" max="10" value="1">
+                <output class="range-value" id="experienceValue" for="experience">1 year</output>
+              </div>
+            </div>
+          </fieldset>
+          <label class="check-option" for="terms"><input type="checkbox" id="terms" name="terms" required>I agree to the student registration terms.</label>
+          <button class="submit-button" type="submit">Create student profile <span aria-hidden="true">→</span></button>
+          <p id="registrationMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 8 forms</a></footer>
+  <script>
+    const experience = document.getElementById('experience');
+    const experienceValue = document.getElementById('experienceValue');
+    experience.addEventListener('input', () => {
+      experienceValue.textContent = `${experience.value} ${experience.value === '1' ? 'year' : 'years'}`;
+    });
+
+    document.getElementById('registrationForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('fullName').value;
+      document.getElementById('registrationMessage').textContent = `Your demo profile is ready, ${name}.`;
+    });
+  </script>
+</body>
+</html>

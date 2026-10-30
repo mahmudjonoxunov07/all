@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a simple sign-in form with accessible labels and browser validation.">
+  <title>Sign in · Week 8 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../week6/style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header">
+    <a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="../index.html">← Week 8</a>
+  </header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← All Week 8 forms</a>
+    <section class="demo-intro"><p class="eyebrow">SAMPLE 01 · SIGN IN</p><h1>Welcome back.</h1><p>A familiar, simple flow with clear fields and a remember-me option.</p></section>
+    <section class="form-layout" aria-label="Sign in">
+      <aside class="form-aside">
+        <div class="aside-content">
+          <p class="aside-kicker">A little space to begin</p>
+          <h2>Good to see you again.</h2>
+          <p class="aside-copy">Sign in to pick up right where you left off. Your next great idea is waiting.</p>
+        </div>
+        <div class="aside-bottom"><span class="aside-dots" aria-hidden="true"><span></span><span></span><span></span></span>A calmer way to get things done</div>
+      </aside>
+      <div class="form-main">
+        <p class="eyebrow">Welcome back</p>
+        <h1>Sign in</h1>
+        <p class="form-intro">Enter your details below to access your account.</p>
+        <form id="loginForm">
+          <div class="field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required placeholder="Enter your password">
+          </div>
+          <div class="form-options">
+            <label class="check-option" for="remember"><input type="checkbox" id="remember" name="remember">Remember this device</label>
+          </div>
+          <button class="submit-button" type="submit">Sign in <span aria-hidden="true">→</span></button>
+          <p class="form-footnote">Demo only — your information is not sent or stored.</p>
+          <p id="submitMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 8 forms</a></footer>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const email = document.getElementById('email').value;
+      document.getElementById('submitMessage').textContent = `Demo sign-in complete for ${email}.`;
+    });
+  </script>
+</body>
+</html>

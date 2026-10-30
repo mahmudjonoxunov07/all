@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore a contact form with browser validation and helpful confirmation feedback.">
+  <title>Contact Us · Week 8 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../../week6/style.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="api-page">
+  <header class="site-header">
+    <a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="../index.html">← Week 8</a>
+  </header>
+  <main class="demo-main">
+    <a class="demo-back" href="../index.html">← All Week 8 forms</a>
+    <section class="demo-intro"><p class="eyebrow">SAMPLE 03 · CONTACT US</p><h1>Send us a note.</h1><p>Share a message with helpful browser validation and clear success feedback.</p></section>
+    <section class="form-layout contact-layout" aria-label="Contact us">
+      <aside class="form-aside">
+        <div class="aside-content">
+          <p class="aside-kicker">We’re all ears</p>
+          <h2>Let’s make something happen.</h2>
+          <p class="aside-copy">Questions, ideas, or just saying hello? Send us a note and we’ll be glad you did.</p>
+        </div>
+        <div class="aside-bottom"><span class="aside-dots" aria-hidden="true"><span></span><span></span><span></span></span>Thoughtful conversations start here</div>
+      </aside>
+      <div class="form-main">
+        <p class="eyebrow">Get in touch</p>
+        <h1>Send us a note.</h1>
+        <p class="form-intro">Fill in the details and leave the rest to us.</p>
+        <form id="contactForm">
+          <div class="field">
+            <label for="senderName">Your name</label>
+            <input type="text" id="senderName" name="name" autocomplete="name" required minlength="2" placeholder="How should we address you?">
+          </div>
+          <div class="field">
+            <label for="senderEmail">Email address</label>
+            <input type="email" id="senderEmail" name="email" autocomplete="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required minlength="3" placeholder="What’s on your mind?">
+          </div>
+          <div class="field">
+            <label for="message">Your message</label>
+            <textarea id="message" name="message" required minlength="10" rows="5" placeholder="Share a few details (at least 10 characters)..."></textarea>
+          </div>
+          <button class="submit-button" type="submit">Send message <span aria-hidden="true">→</span></button>
+          <p class="form-footnote">This is a demo form — nothing will be sent.</p>
+          <p id="contactMessage" class="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 8 forms</a></footer>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('senderName').value;
+      document.getElementById('contactMessage').textContent = `Thanks, ${name} — your demo message is ready.`;
+    });
+  </script>
+</body>
+</html>

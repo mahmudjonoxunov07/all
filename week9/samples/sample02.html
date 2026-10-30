@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn the basics of web accessibility, WCAG, color contrast, and semantic HTML.">
+  <title>Web Accessibility (A11y) · Week 9 | Web Programming</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body class="a11y-page">
+  <a class="a11y-skip-link" href="#main-content">Skip to lesson</a>
+  <header class="site-header">
+    <a class="wordmark" href="../../index.html"><span class="wordmark-mark">WP</span><span>Course workbook</span></a>
+    <a class="back-link" href="../index.html">← Week 9</a>
+  </header>
+  <main class="a11y-main" id="main-content">
+    <a class="a11y-back" href="../index.html">← Week 9 labs and guides</a>
+    <section class="a11y-hero" aria-labelledby="page-title">
+      <p class="eyebrow">K0126002 · GACHON UNIVERSITY · 2026 FALL</p>
+      <h1 id="page-title">Web Accessibility <em>(A11y)</em></h1>
+      <p class="a11y-lede">Designing for <strong>all</strong> users means making the web work across visual, motor, cognitive, and hearing needs.</p>
+      <p class="a11y-instructor">Week 9 · Dr. Toshpulatov</p>
+    </section>
+
+    <section class="a11y-section" aria-labelledby="accessibility-heading">
+      <div class="a11y-section-heading">
+        <p class="eyebrow">A better experience for everyone</p>
+        <h2 id="accessibility-heading">What is accessibility?</h2>
+        <p>Accessibility (A11y) is the practice of designing and building experiences people can use, whatever their abilities or how they access the web.</p>
+      </div>
+      <div class="a11y-needs">
+        <article class="a11y-need">
+          <span class="a11y-number" aria-hidden="true">01</span>
+          <h3>Visual</h3>
+          <p>Blindness, low vision, and color blindness</p>
+          <small>About 2.2 billion people globally experience vision impairment. Use text alternatives and sufficient contrast.</small>
+        </article>
+        <article class="a11y-need">
+          <span class="a11y-number" aria-hidden="true">02</span>
+          <h3>Motor</h3>
+          <p>Tremors or limited arm mobility</p>
+          <small>Make every action possible with a keyboard.</small>
+        </article>
+        <article class="a11y-need">
+          <span class="a11y-number" aria-hidden="true">03</span>
+          <h3>Cognitive</h3>
+          <p>Dyslexia, ADHD, or memory impairments</p>
+          <small>Use clear language and consistent layouts.</small>
+        </article>
+        <article class="a11y-need">
+          <span class="a11y-number" aria-hidden="true">04</span>
+          <h3>Hearing</h3>
+          <p>Deafness or hard of hearing</p>
+          <small>Provide captions, transcripts, and visual cues.</small>
+        </article>
+      </div>
+      <p class="a11y-callout"><strong>1 in 6 people</strong> worldwide has a disability. Accessible sites can also improve SEO, load faster, and reach more users.</p>
+    </section>
+
+    <section class="a11y-section" aria-labelledby="wcag-heading">
+      <div class="a11y-section-heading">
+        <p class="eyebrow">A practical framework</p>
+        <h2 id="wcag-heading">WCAG: four principles</h2>
+        <p>The Web Content Accessibility Guidelines organize accessibility around four goals: content should be perceivable, operable, understandable, and robust.</p>
+      </div>
+      <div class="a11y-principles">
+        <article class="a11y-principle">
+          <span aria-hidden="true">P</span>
+          <h3>Perceivable</h3>
+          <p>Users can see, hear, or otherwise perceive all content.</p>
+          <ul><li>Alt text on images</li><li>Captions on video</li><li>Sufficient color contrast</li></ul>
+        </article>
+        <article class="a11y-principle">
+          <span aria-hidden="true">O</span>
+          <h3>Operable</h3>
+          <p>Users can navigate and interact without a mouse.</p>
+          <ul><li>Full keyboard access</li><li>No keyboard traps</li><li>Skip navigation links</li></ul>
+        </article>
+        <article class="a11y-principle">
+          <span aria-hidden="true">U</span>
+          <h3>Understandable</h3>
+          <p>Content and interactions are clear and predictable.</p>
+          <ul><li>Consistent navigation</li><li>Plain language</li><li>Helpful error messages</li></ul>
+        </article>
+        <article class="a11y-principle">
+          <span aria-hidden="true">R</span>
+          <h3>Robust</h3>
+          <p>Content works with current and future assistive technology.</p>
+          <ul><li>Valid semantic HTML</li><li>ARIA used correctly</li><li>Future-proof markup</li></ul>
+        </article>
+      </div>
+      <p class="a11y-callout"><strong>Course target: WCAG 2.1 Level AA.</strong> Level A is the minimum, AA is the industry-standard target, and AAA is the highest level.</p>
+    </section>
+
+    <section class="a11y-quiz" aria-labelledby="contrast-quiz-heading">
+      <p class="eyebrow">Quick quiz · 01</p>
+      <h2 id="contrast-quiz-heading">What is the minimum WCAG 2.1 AA contrast ratio for normal body text?</h2>
+      <ol class="a11y-options" type="A">
+        <li>2:1</li>
+        <li>3:1</li>
+        <li>4.5:1</li>
+        <li>7:1</li>
+      </ol>
+      <details class="a11y-answer">
+        <summary>Reveal the answer</summary>
+        <p><strong>4.5:1.</strong> Large text (at least 18pt regular or 14pt bold) needs a minimum ratio of 3:1. Level AAA requires 7:1 for normal text. Try the <a href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a> or Chrome DevTools.</p>
+      </details>
+    </section>
+
+    <section class="a11y-section" aria-labelledby="semantic-heading">
+      <div class="a11y-section-heading">
+        <p class="eyebrow">Meaning beats markup</p>
+        <h2 id="semantic-heading">Semantic HTML vs. “div soup”</h2>
+        <p>Semantic elements tell assistive technology what each part of a page means. Use the element that matches the content instead of generic containers everywhere.</p>
+      </div>
+      <div class="a11y-examples">
+        <article class="a11y-example">
+          <h3>Div soup · no meaning</h3>
+          <pre><code>&lt;div&gt;Home&lt;/div&gt;
+&lt;div&gt;About&lt;/div&gt;
+&lt;div&gt;Article Title&lt;/div&gt;
+&lt;div&gt;Content here&lt;/div&gt;
+&lt;div&gt;Copyright 2026&lt;/div&gt;</code></pre>
+          <p class="a11y-sr-example"><strong>A screen reader may announce:</strong> “group”, “group”, “Home, link”, “group”, “group”.</p>
+        </article>
+        <article class="a11y-example a11y-example-good">
+          <h3>Semantic HTML · clear landmarks</h3>
+          <pre><code>&lt;header&gt;...&lt;/header&gt;
+&lt;nav aria-label="Main"&gt;...&lt;/nav&gt;
+&lt;main&gt;
+  &lt;h1&gt;Article Title&lt;/h1&gt;
+  &lt;p&gt;Content here&lt;/p&gt;
+&lt;/main&gt;
+&lt;footer&gt;Copyright 2026&lt;/footer&gt;</code></pre>
+          <p class="a11y-sr-example"><strong>A screen reader can identify:</strong> banner, navigation, main, and footer landmarks, plus an H1 heading.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="a11y-quiz" aria-labelledby="semantic-quiz-heading">
+      <p class="eyebrow">Quick quiz · 02</p>
+      <h2 id="semantic-quiz-heading">Which element is the most accessible way to mark up a site’s navigation links?</h2>
+      <ol class="a11y-options" type="A">
+        <li><code>&lt;div&gt;</code></li>
+        <li><code>&lt;nav&gt;</code></li>
+        <li><code>&lt;section&gt;</code></li>
+        <li><code>&lt;span&gt;</code></li>
+      </ol>
+      <details class="a11y-answer">
+        <summary>Reveal the answer</summary>
+        <p><strong><code>&lt;nav&gt;</code>.</strong> It creates a navigation landmark so assistive technology users can find and move between important link groups.</p>
+      </details>
+    </section>
+  </main>
+  <footer class="site-footer"><span>WEB PROGRAMMING · K0126002</span><a href="../index.html">Week 9 labs and guides</a></footer>
+</body>
+</html>

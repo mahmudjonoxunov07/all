@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="A practical accessibility audit report documenting findings, fixes, and Lighthouse score improvements.">
+  <title>Week 9.02 · Accessibility Audit | Web Programming</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to report</a>
+  <div class="report-shell">
+    <header class="topbar">
+      <a class="wordmark" href="../index.html" aria-label="Coursework home">
+        <span class="wordmark-icon" aria-hidden="true">W</span>
+        <span>WEB<span class="wordmark-light"> / FIELDNOTES</span></span>
+      </a>
+      <nav class="top-links" aria-label="Course navigation">
+        <a href="../index.html">Coursework</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Week 9 · Part 02</span>
+      </nav>
+      <span class="report-status"><span aria-hidden="true"></span> AUDIT REPORT</span>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" aria-labelledby="report-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>COURSEWORK</span><span class="eyebrow-divider">/</span> WEEK 09 — PART 02</p>
+          <h1 id="report-title">A more accessible<br>web, <em>by design.</em></h1>
+          <p class="hero-intro">An accessibility audit of my Week 2 and Week 3 coursework: what Lighthouse found, what I changed, and how the pages improved.</p>
+          <div class="report-meta">
+            <span class="meta-avatar" aria-hidden="true">X</span>
+            <span><strong>Xushnudbek</strong><small>Web Programming · K0126002</small></span>
+            <span class="meta-separator" aria-hidden="true"></span>
+            <span class="meta-label">WEEK 9 HOMEWORK</span>
+          </div>
+        </div>
+        <aside class="hero-summary" aria-label="Audit summary">
+          <div class="summary-top">
+            <span class="summary-label">ACCESSIBILITY</span>
+            <span class="summary-mark" aria-hidden="true">↗</span>
+          </div>
+          <div class="score-change">
+            <div class="score score-before"><strong>84</strong><span>BEFORE</span></div>
+            <span class="score-arrow" aria-hidden="true">→</span>
+            <div class="score score-after"><strong>100</strong><span>AFTER</span></div>
+          </div>
+          <p class="summary-note">Representative page · week2/ex2.html</p>
+          <div class="summary-rule"></div>
+          <div class="summary-foot"><span>4 example pages reviewed</span><span class="pass-mark">4 improved</span></div>
+        </aside>
+        <div class="hero-index" aria-hidden="true">09<span> / 02</span></div>
+      </section>
+
+      <section class="overview" aria-label="Audit overview">
+        <div class="overview-heading">
+          <p class="eyebrow">THE AUDIT AT A GLANCE</p>
+          <p>Small fixes. Better access.</p>
+        </div>
+        <div class="stat-grid">
+          <article class="stat">
+            <span class="stat-icon stat-icon-green" aria-hidden="true">↗</span>
+            <strong>12</strong>
+            <span>pages improved</span>
+          </article>
+          <article class="stat">
+            <span class="stat-icon stat-icon-violet" aria-hidden="true">⌕</span>
+            <strong>5</strong>
+            <span>Lighthouse checks addressed</span>
+          </article>
+          <article class="stat">
+            <span class="stat-icon stat-icon-amber" aria-hidden="true">⌘</span>
+            <strong>22</strong>
+            <span>exercise pages with a main landmark</span>
+          </article>
+          <article class="stat">
+            <span class="stat-icon stat-icon-blue" aria-hidden="true">✓</span>
+            <strong>100</strong>
+            <span>final score on the examples</span>
+          </article>
+        </div>
+      </section>
+
+      <nav class="report-nav" aria-label="Report sections">
+        <a href="#results">Results</a>
+        <a href="#findings">What changed</a>
+        <a href="#method">Method</a>
+      </nav>
+
+      <section class="report-section results-section" id="results" aria-labelledby="results-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">01 — RESULTS</p>
+            <h2 id="results-title">The before-and-after</h2>
+          </div>
+          <p class="section-aside">Four representative pages · Lighthouse accessibility</p>
+        </div>
+        <div class="results-list">
+          <article class="result-row">
+            <span class="result-number">01</span>
+            <div class="result-page"><strong>Favourite sport</strong><code>week2/ex2.html</code></div>
+            <span class="result-before">84</span><span class="result-arrow" aria-hidden="true">→</span><span class="result-after">100</span>
+            <span class="result-state"><span aria-hidden="true">✓</span> Improved</span>
+          </article>
+          <article class="result-row">
+            <span class="result-number">02</span>
+            <div class="result-page"><strong>Navigation links</strong><code>week2/ex3.html</code></div>
+            <span class="result-before">79</span><span class="result-arrow" aria-hidden="true">→</span><span class="result-after">100</span>
+            <span class="result-state"><span aria-hidden="true">✓</span> Improved</span>
+          </article>
+          <article class="result-row">
+            <span class="result-number">03</span>
+            <div class="result-page"><strong>Colour swatches</strong><code>week3/ex3.html</code></div>
+            <span class="result-before">84</span><span class="result-arrow" aria-hidden="true">→</span><span class="result-after">100</span>
+            <span class="result-state"><span aria-hidden="true">✓</span> Improved</span>
+          </article>
+          <article class="result-row">
+            <span class="result-number">04</span>
+            <div class="result-page"><strong>CSS exercise page</strong><code>week3/ex8.html</code></div>
+            <span class="result-before">92</span><span class="result-arrow" aria-hidden="true">→</span><span class="result-after">100</span>
+            <span class="result-state"><span aria-hidden="true">✓</span> Improved</span>
+          </article>
+        </div>
+        <p class="results-caption"><span class="caption-mark" aria-hidden="true">i</span> The report records four example scores. The other eight pages had the same title issue; the Week 2 pages also needed document language. They were fixed as part of the same pass.</p>
+      </section>
+
+      <section class="report-section findings-section" id="findings" aria-labelledby="findings-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">02 — THE WORK</p>
+            <h2 id="findings-title">Seven fixes, one clearer experience.</h2>
+          </div>
+          <p class="section-aside">The specific changes behind the score improvements.</p>
+        </div>
+
+        <article class="finding">
+          <div class="finding-number">01</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Give every page a proper title</h3><span class="audit-tag">DOCUMENT TITLE</span></div>
+            <p class="finding-meta"><strong>Where</strong> 11 pages across Week 2 and Week 3</p>
+            <p>Without a descriptive title, browser tabs and assistive technology offer little context about the page. I added a specific <code>&lt;title&gt;</code> to each document.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>week3/ex1.html</code></figcaption><pre><code>&lt;style&gt;…&lt;/style&gt;
+&lt;/head&gt;</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>week3/ex1.html</code></figcaption><pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;CSS is Beautiful | Week 3&lt;/title&gt;
+  &lt;style&gt;…&lt;/style&gt;
+&lt;/head&gt;</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-number">02</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Turn fragments into complete documents</h3><span class="audit-tag">HTML HAS LANG</span></div>
+            <p class="finding-meta"><strong>Where</strong> week2/ex2, ex3, ex4 and ex7</p>
+            <p>These pages had no document shell, language declaration, or head section. I added a complete HTML structure with <code>lang="en"</code>, metadata, a title, and a main landmark.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>week2/ex2.html</code></figcaption><pre><code>&lt;h1&gt;My Favourite Sport&lt;/h1&gt;
+&lt;h2&gt;Why I Love It&lt;/h2&gt;
+&lt;p&gt;I have played football…&lt;/p&gt;</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>week2/ex2.html</code></figcaption><pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My Favourite Sport | Week 2&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;main&gt;…&lt;/main&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-number">03</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Make colour labels readable</h3><span class="audit-tag">COLOR CONTRAST</span></div>
+            <p class="finding-meta"><strong>Where</strong> week3/ex3.html</p>
+            <p>White labels on the colour swatches measured between 2.14:1 and 3.76:1, below the 4.5:1 target for normal text. Changing the labels to black improved contrast across the swatches.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>week3/ex3.html</code></figcaption><pre><code>.swatch {
+  color: white;
+  font-weight: bold;
+}</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>week3/ex3.html</code></figcaption><pre><code>.swatch {
+  color: #000;
+  font-weight: bold;
+}</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-number">04</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Improve contrast in the footer</h3><span class="audit-tag">COLOR CONTRAST</span></div>
+            <p class="finding-meta"><strong>Where</strong> week3/ex8.html</p>
+            <p>The shared footer text colour, <code>#587078</code>, reached only 2.78:1 against the dark background. A page-level override makes the text lighter and easier to read.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>site-nav.js</code></figcaption><pre><code>#wp-site-footer {
+  color: #587078;
+}</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>week3/ex8.html</code></figcaption><pre><code>#wp-site-footer.footer {
+  color: #cbd5e1;
+  border-top-color: #334155;
+}</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-number">05</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Make navigation easier to tap</h3><span class="audit-tag">TARGET SIZE</span></div>
+            <p class="finding-meta"><strong>Where</strong> week2/ex3.html</p>
+            <p>The menu links were only 17px tall. I added vertical padding and a 24px minimum height so the targets are easier to activate.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>week2/ex3.html</code></figcaption><pre><code>nav a {
+  color: #176a50;
+}</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>week2/ex3.html</code></figcaption><pre><code>nav a {
+  display: inline-block;
+  min-height: 24px;
+  padding: 4px 0;
+}</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-number">06</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Add a main landmark to exercise pages</h3><span class="audit-tag">LANDMARK ONE MAIN</span></div>
+            <p class="finding-meta"><strong>Where</strong> 22 Week 2 and Week 3 exercise pages</p>
+            <p>Wrapping the primary page content in <code>&lt;main&gt;</code> gives screen-reader users a direct route to the page's main content.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>week3/ex1.html</code></figcaption><pre><code>&lt;body&gt;
+  &lt;h1&gt;CSS is Beautiful&lt;/h1&gt;
+  &lt;p&gt;A few lines of CSS…&lt;/p&gt;
+&lt;/body&gt;</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>week3/ex1.html</code></figcaption><pre><code>&lt;body&gt;
+  &lt;main&gt;
+    &lt;h1&gt;CSS is Beautiful&lt;/h1&gt;
+    &lt;p&gt;A few lines of CSS…&lt;/p&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="finding">
+          <div class="finding-number">07</div>
+          <div class="finding-content">
+            <div class="finding-heading"><h3>Let keyboard users skip navigation</h3><span class="audit-tag">BYPASS BLOCKS</span></div>
+            <p class="finding-meta"><strong>Where</strong> Pages with a main landmark, via site-nav.js</p>
+            <p>A skip link now appears when focused, letting keyboard users bypass repeated navigation and jump directly to the main content.</p>
+            <details class="code-disclosure">
+              <summary>View the change <span aria-hidden="true">＋</span></summary>
+              <div class="code-grid">
+                <figure class="code-panel code-before"><figcaption>BEFORE <code>site-nav.js</code></figcaption><pre><code>const homeUrl =
+  new URL('./index.html', script.src);</code></pre></figure>
+                <figure class="code-panel code-after"><figcaption>AFTER <code>site-nav.js</code></figcaption><pre><code>const main = document.querySelector('main');
+if (main &amp;&amp; !document.querySelector('.skip-link')) {
+  if (!main.id) main.id = 'main-content';
+  const skip = document.createElement('a');
+  skip.className = 'skip-link';
+  skip.href = '#' + main.id;
+  skip.textContent = 'Skip to main content';
+  document.body.prepend(skip);
+}</code></pre></figure>
+              </div>
+            </details>
+          </div>
+        </article>
+      </section>
+
+      <section class="method-card" id="method" aria-labelledby="method-title">
+        <div class="method-mark" aria-hidden="true">↗</div>
+        <div>
+          <p class="eyebrow">03 — METHOD</p>
+          <h2 id="method-title">Checked with Lighthouse.</h2>
+          <p>I ran the Lighthouse Accessibility audit in Chrome DevTools on the pages, addressed the reported issues, and ran the audit again. The scores above summarize the four example pages recorded in this report.</p>
+        </div>
+        <div class="method-stamp"><span>TOOLS</span><strong>Chrome<br>DevTools</strong></div>
+      </section>
+
+      <footer class="footer">
+        <a class="footer-back" href="../index.html"><span aria-hidden="true">←</span> Back to coursework</a>
+        <span>WEEK 09 <span aria-hidden="true">·</span> ACCESSIBILITY AUDIT</span>
+        <a href="../index.html">All course materials <span aria-hidden="true">↗</span></a>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>

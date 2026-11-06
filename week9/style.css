@@ -81,6 +81,15 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 .page-note { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 17px 2px 0; color: var(--w9-muted); font-size: 9px; }
 .page-note > span { color: var(--w9-lime); }
 .author-credit { margin-left: auto; color: #82948a; font: 9px var(--w9-mono); }
+.audit-link { display: grid; grid-template-columns: 39px minmax(0,1fr) 24px; align-items: center; gap: 14px; margin-top: 15px; padding: 16px; border: 1px solid #456044; background: linear-gradient(110deg, #1d3227, #172821); text-decoration: none; transition: background .2s, transform .2s; }
+.audit-link:hover { transform: translateY(-2px); background: #243a2c; }
+.audit-link:focus-visible { outline: 3px solid var(--w9-lime); outline-offset: 4px; }
+.audit-link-mark { width: 35px; height: 35px; display: grid; place-items: center; border-radius: 50%; background: var(--w9-lime); color: #142019; }
+.audit-link-copy { display: grid; gap: 3px; }
+.audit-link-copy .eyebrow { font-size: 8px; }
+.audit-link-copy strong { font: 600 18px/1.3 var(--w9-serif); }
+.audit-link-copy small { color: var(--w9-muted); font-size: 9px; }
+.audit-link-arrow { color: var(--w9-lime); font-size: 18px; text-align: right; }
 
 .lesson-page { width: min(850px, calc(100% - 40px)); margin: 0 auto; padding: 28px 0 60px; }
 .lesson-heading { max-width: 700px; margin: 20px 0 26px; }
@@ -186,6 +195,9 @@ a:focus-visible, button:focus-visible, input:focus-visible {
   .lab-card { min-height: 165px; }
   .section-heading { align-items: flex-start; }
   .week-tag { font-size: 7px; }
+  .audit-link { grid-template-columns: 33px minmax(0,1fr) 16px; gap: 10px; padding: 13px; }
+  .audit-link-copy strong { font-size: 15px; }
+  .audit-link-copy small { font-size: 8px; }
   .lesson-page { width: min(100% - 32px, 560px); padding-top: 20px; }
   .image-grid { grid-template-columns: 1fr; }
   .signup-layout { grid-template-columns: 1fr; }

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Week 9 accessibility labs by Mahmudjon: keyboard-ready controls, useful image descriptions, and friendlier forms.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0b1514">
+  <title>Week 9 · Access for Everyone | Web Programming</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="home">
+    <a class="back" href="../index.html">← All weeks</a>
+
+    <header class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> JSK0126002 · WEB PROGRAMMING · WEEK 09.01</p>
+        <p class="author">A project by <strong>Mahmudjon</strong></p>
+        <h1>Good design<br>works for <span>everyone.</span></h1>
+        <p class="lede">Small accessibility choices make a big difference. Explore keyboard-ready controls, useful image descriptions, and forms that guide everyone through.</p>
+        <a class="hero-link" href="samples/sample02.html">Start exploring <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-sticker"><span>INCLUSIVE</span><strong>✳</strong></div>
+        <div class="art-label">A web with<br>room for all.</div>
+        <span class="art-star star-one">✳</span>
+        <span class="art-star star-two">✦</span>
+      </div>
+    </header>
+
+    <section class="content-panel" aria-labelledby="week-heading">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THREE HANDS-ON ACCESSIBILITY LABS</p>
+          <h2 id="week-heading">Make every interaction count.</h2>
+        </div>
+        <span class="week-tag">WEEK 09 · 03 LABS</span>
+      </div>
+
+      <div class="lab-grid">
+        <a class="lab-card lab-card-lime" href="samples/sample02.html">
+          <span class="lab-card-top"><span class="lab-number">01</span><span class="lab-symbol" aria-hidden="true">↵</span></span>
+          <span class="lab-title">Buttons that work for everyone</span>
+          <span class="lab-description">Try real buttons, clear names, visible focus, and keyboard activation.</span>
+          <span class="lab-action">Explore keyboard access <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="lab-card lab-card-violet" href="samples/sample03.html">
+          <span class="lab-card-top"><span class="lab-number">02</span><span class="lab-symbol" aria-hidden="true">▧</span></span>
+          <span class="lab-title">Write better image descriptions</span>
+          <span class="lab-description">Choose useful alt text, mark decoration, and give charts a meaningful summary.</span>
+          <span class="lab-action">Explore image text <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="lab-card lab-card-blue" href="samples/sample04.html">
+          <span class="lab-card-top"><span class="lab-number">03</span><span class="lab-symbol" aria-hidden="true">✦</span></span>
+          <span class="lab-title">Build a friendlier signup</span>
+          <span class="lab-description">Connect labels, explain errors, and help people recover with confidence.</span>
+          <span class="lab-action">Explore accessible forms <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="lab-card lab-card-quiet" href="samples/sample01.html">
+          <span class="lab-card-top"><span class="lab-number">BONUS</span><span class="lab-symbol" aria-hidden="true">✓</span></span>
+          <span class="lab-title">Creative Coding Lab registration</span>
+          <span class="lab-description">A longer form-validation demo with live feedback and a confirmation step.</span>
+          <span class="lab-action">Open the bonus demo <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="page-note"><span aria-hidden="true">✳</span> Try each lab with your keyboard: Tab to move, Enter or Space to activate.<span class="author-credit">Designed by Mahmudjon</span></footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 90" role="img">
+  <rect x="4" y="4" width="82" height="82" rx="18" fill="#b6dc73"/>
+  <path d="M25 66V24h11l25 27V24h13v42H63L38 39v27Z" fill="#142019"/>
+  <text x="104" y="41" fill="#edf2e8" font-family="Arial,sans-serif" font-size="18" font-weight="700">ACCESS FOR</text>
+  <text x="104" y="66" fill="#b6dc73" font-family="Arial,sans-serif" font-size="21" font-weight="700">EVERYONE</text>
+</svg>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A longer Creative Coding Lab registration form with live validation and a confirmation step.">
+  <meta name="color-scheme" content="dark">
+  <title>Creative Coding Lab registration · Week 9 | Mahmudjon</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="lesson-page">
+    <a class="back" href="../index.html">← Back to Week 9</a>
+    <header class="lesson-heading">
+      <p class="eyebrow">BONUS · FORM VALIDATION</p>
+      <h1>Make something <span>matter.</span></h1>
+      <p>Register for the Creative Coding Lab. Get clear feedback as you go, then review your details before the demo confirmation.</p>
+    </header>
+    <section class="bonus-card" aria-labelledby="registration-heading">
+      <p class="demo-kicker">CREATIVE CODING LAB · REGISTRATION</p>
+      <h2 id="registration-heading">Save your place</h2>
+      <p>All fields are required. This demo keeps your details in this browser.</p>
+      <div class="bonus-progress" aria-label="Step 1 of 2"><strong>STEP 01</strong><span class="active"></span><span></span><strong>REVIEW</strong></div>
+      <form class="bonus-form" id="registrationForm" novalidate>
+        <div class="bonus-field">
+          <label for="fullName">Your name</label>
+          <input id="fullName" name="fullName" autocomplete="name" required minlength="2" placeholder="Mahmudjon">
+          <p class="bonus-error" id="nameError" aria-live="polite"></p>
+        </div>
+        <div class="bonus-field">
+          <label for="registrationEmail">Email address</label>
+          <input id="registrationEmail" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          <p class="bonus-hint">We’ll use this to identify your demo registration.</p>
+          <p class="bonus-error" id="registrationEmailError" aria-live="polite"></p>
+        </div>
+        <button class="bonus-submit" type="submit">Review registration <span aria-hidden="true">→</span></button>
+        <p class="bonus-result" id="registrationResult" role="status" aria-live="polite"></p>
+      </form>
+      <section class="success-panel" id="confirmation" aria-labelledby="confirmation-heading" hidden>
+        <p class="demo-kicker">STEP 02 · CONFIRMED</p>
+        <h3 id="confirmation-heading" tabindex="-1">You’re on the list.</h3>
+        <p id="confirmationMessage"></p>
+      </section>
+    </section>
+    <p class="site-credit">Week 9 accessibility lab · Mahmudjon</p>
+  </main>
+  <script>
+    const registrationForm = document.getElementById('registrationForm');
+    const fullName = document.getElementById('fullName');
+    const registrationEmail = document.getElementById('registrationEmail');
+    const nameError = document.getElementById('nameError');
+    const registrationEmailError = document.getElementById('registrationEmailError');
+    const registrationResult = document.getElementById('registrationResult');
+
+    function validateRegistration() {
+      const nameMessage = fullName.value.trim().length < 2 ? 'Enter your name (at least 2 characters).' : '';
+      const emailMessage = !registrationEmail.value.trim()
+        ? 'Enter your email address.'
+        : registrationEmail.validity.typeMismatch ? 'Enter a valid email address.' : '';
+      fullName.setAttribute('aria-invalid', String(Boolean(nameMessage)));
+      registrationEmail.setAttribute('aria-invalid', String(Boolean(emailMessage)));
+      nameError.textContent = nameMessage;
+      registrationEmailError.textContent = emailMessage;
+      return !nameMessage && !emailMessage;
+    }
+
+    registrationForm.addEventListener('input', () => {
+      registrationResult.textContent = '';
+      validateRegistration();
+    });
+
+    registrationForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!validateRegistration()) {
+        registrationForm.querySelector('[aria-invalid="true"]').focus();
+        registrationResult.textContent = 'Check the highlighted fields and try again.';
+        return;
+      }
+      registrationForm.hidden = true;
+      document.getElementById('confirmationMessage').textContent =
+        `Thanks, ${fullName.value.trim()}. A demo place is reserved for ${registrationEmail.value.trim()}.`;
+      document.getElementById('confirmation').hidden = false;
+      document.querySelector('.bonus-progress').setAttribute('aria-label', 'Step 2 of 2');
+      document.querySelectorAll('.bonus-progress span')[1].classList.add('active');
+      document.getElementById('confirmation-heading').focus();
+    });
+  </script>
+</body>
+</html>

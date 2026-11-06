@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practice keyboard-accessible buttons, clear accessible names, and visible focus.">
+  <meta name="color-scheme" content="dark">
+  <title>Keyboard-ready buttons · Week 9 | Mahmudjon</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="lesson-page">
+    <a class="back" href="../index.html">← Back to Week 9</a>
+    <header class="lesson-heading">
+      <p class="eyebrow">LAB 01 · KEYBOARD ACCESS</p>
+      <h1>Make every click <span>count.</span></h1>
+      <p>Use a real button, give icon-only controls a name, and make the keyboard focus easy to spot.</p>
+    </header>
+
+    <section class="demo-card" aria-labelledby="demo-heading">
+      <p class="demo-kicker">Try it yourself</p>
+      <h2 id="demo-heading">A small, keyboard-friendly preview</h2>
+      <p class="demo-copy">Press Tab to reach each control. Activate the green button with Enter or Space, then try closing the preview.</p>
+
+      <div class="preview-window">
+        <div class="preview-bar" aria-hidden="true">
+          <span class="preview-dot"></span><span class="preview-dot"></span><span class="preview-dot"></span>
+          Interactive preview
+        </div>
+        <div class="preview-content">
+          <h3>Your next idea is ready.</h3>
+          <p>Native buttons work with a mouse, touch, and keyboard without extra code.</p>
+          <div class="preview-actions">
+            <button type="button" class="primary-action" id="publishButton">Publish preview <span aria-hidden="true">→</span></button>
+            <button type="button" class="icon-action" id="closeButton" aria-label="Close preview">✕</button>
+          </div>
+        </div>
+      </div>
+      <p class="activation-result" id="activationResult" role="status" aria-live="polite"></p>
+
+      <aside class="takeaway">
+        <span class="takeaway-mark" aria-hidden="true">✓</span>
+        <div>
+          <strong>Why this works</strong>
+          <p>Real <code>&lt;button&gt;</code> elements are keyboard-operable by default. The close button’s accessible name explains its purpose, and both controls get a visible focus ring.</p>
+        </div>
+      </aside>
+    </section>
+    <p class="site-credit">Week 9 accessibility lab · Mahmudjon</p>
+  </main>
+  <script>
+    const publishButton = document.getElementById('publishButton');
+    const closeButton = document.getElementById('closeButton');
+    const previewContent = document.querySelector('.preview-content');
+    const result = document.getElementById('activationResult');
+
+    publishButton.addEventListener('click', () => {
+      if (previewContent.hidden) {
+        previewContent.hidden = false;
+        result.textContent = 'Preview reopened. You can try closing it again.';
+        return;
+      }
+      result.textContent = 'Preview published! This button works with a mouse or keyboard.';
+    });
+
+    closeButton.addEventListener('click', () => {
+      previewContent.hidden = true;
+      result.textContent = 'Preview closed. Focus has returned to the publish button.';
+      publishButton.focus();
+    });
+  </script>
+</body>
+</html>

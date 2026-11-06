@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Learn when to describe images, use empty alt text, and summarize chart information.">
+  <meta name="color-scheme" content="dark">
+  <title>Image descriptions · Week 9 | Mahmudjon</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="lesson-page">
+    <a class="back" href="../index.html">← Back to Week 9</a>
+    <header class="lesson-heading">
+      <p class="eyebrow">LAB 02 · IMAGE DESCRIPTIONS</p>
+      <h1>Give every image <span>a purpose.</span></h1>
+      <p>Informative images need useful descriptions. Decorative images need empty alt text. A linked logo should explain where it goes.</p>
+    </header>
+
+    <section class="demo-card" aria-labelledby="image-lab-heading">
+      <p class="demo-kicker">Four images · Four decisions</p>
+      <h2 id="image-lab-heading">What should a screen reader hear?</h2>
+      <div class="image-grid">
+        <article class="image-example">
+          <figure>
+            <div class="image-frame">
+              <img src="../assets/campus.svg" alt="Gachon University campus building among trees and walking paths">
+            </div>
+            <figcaption><strong>Campus illustration</strong>Informative — describe the detail that matters.</figcaption>
+          </figure>
+        </article>
+        <article class="image-example">
+          <figure>
+            <div class="image-frame wave-frame">
+              <img src="../assets/wave.svg" alt="" data-decorative="true">
+            </div>
+            <figcaption><strong>Decorative divider</strong>Decorative — <code>alt=""</code> keeps extra noise out.</figcaption>
+          </figure>
+        </article>
+        <article class="image-example">
+          <figure>
+            <div class="image-frame logo-frame">
+              <a href="../index.html">
+                <img src="../assets/logo.svg" alt="Week 9 accessibility labs by Mahmudjon">
+              </a>
+            </div>
+            <figcaption><strong>Linked logo</strong>The alt text gives the link a useful accessible name.</figcaption>
+          </figure>
+        </article>
+        <article class="image-example">
+          <figure>
+            <div class="image-frame chart-frame">
+              <img src="../assets/enrollment.svg" alt="Student enrollment increased from 1,200 in 2024 to 1,400 in 2025 and 1,476 in 2026">
+            </div>
+            <figcaption><strong>Enrollment chart</strong>Summarize the trend and key values in the alternative text.</figcaption>
+          </figure>
+        </article>
+      </div>
+
+      <div class="alt-check">
+        <p>Run a quick check for missing, generic, or misplaced alternative text.</p>
+        <button type="button" class="alt-check-button" id="checkAlts">Check these descriptions</button>
+      </div>
+      <div id="altResults" class="alt-results" aria-live="polite" aria-atomic="true"></div>
+    </section>
+    <p class="site-credit">Week 9 accessibility lab · Mahmudjon</p>
+  </main>
+  <script>
+    const checkAltsButton = document.getElementById('checkAlts');
+    const altResults = document.getElementById('altResults');
+    const genericDescriptions = new Set(['image', 'photo', 'logo', 'chart', 'picture']);
+
+    checkAltsButton.addEventListener('click', () => {
+      const images = document.querySelectorAll('.image-example img');
+      const list = document.createElement('ul');
+
+      images.forEach((image, index) => {
+        const label = image.closest('.image-example').querySelector('figcaption strong').textContent;
+        const alt = image.getAttribute('alt');
+        let message;
+        let hasError = false;
+
+        if (alt === null) {
+          message = 'missing the alt attribute.';
+          hasError = true;
+        } else if (image.closest('figure').querySelector('a') && alt.trim() === '') {
+          message = 'the linked image needs text to name its link.';
+          hasError = true;
+        } else if (image.dataset.decorative === 'true' && alt !== '') {
+          message = 'is decorative, so its alt text should be empty.';
+          hasError = true;
+        } else if (image.dataset.decorative === 'true') {
+          message = 'correctly uses empty alt text because it is decorative.';
+        } else if (alt.trim() === '') {
+          message = 'is informative, so it needs a useful description.';
+          hasError = true;
+        } else if (genericDescriptions.has(alt.trim().toLowerCase())) {
+          message = 'uses a generic description. Describe what matters instead.';
+          hasError = true;
+        } else {
+          message = `has a description: “${alt}”.`;
+        }
+
+        const item = document.createElement('li');
+        item.dataset.status = hasError ? 'error' : 'pass';
+        const status = document.createElement('strong');
+        status.textContent = hasError ? 'CHECK' : 'PASS';
+        const details = document.createElement('span');
+        details.textContent = `Image ${index + 1} · ${label}: ${message}`;
+        item.append(status, details);
+        list.append(item);
+      });
+
+      altResults.replaceChildren(list);
+    });
+  </script>
+</body>
+</html>

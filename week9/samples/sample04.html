@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Try an accessible signup form with connected labels, helpful instructions, and clear validation.">
+  <meta name="color-scheme" content="dark">
+  <title>Accessible signup · Week 9 | Mahmudjon</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main class="lesson-page">
+    <a class="back" href="../index.html">← Back to Week 9</a>
+    <header class="lesson-heading">
+      <p class="eyebrow">LAB 03 · ACCESSIBLE FORMS</p>
+      <h1>A signup that feels <span>clear.</span></h1>
+      <p>Give every field a real label, connect helpful instructions, and explain errors with words—not color alone.</p>
+    </header>
+
+    <section class="signup-layout" aria-label="Accessible account creation demo">
+      <aside class="signup-aside">
+        <div>
+          <span class="signup-mark" aria-hidden="true">✦</span>
+          <h2>Make room for good ideas.</h2>
+        </div>
+        <p>Thoughtful details make it easier for everyone to join in.</p>
+      </aside>
+
+      <div class="signup-main">
+        <div class="signup-top">
+          <div>
+            <p class="eyebrow">YOUR NEXT CHAPTER</p>
+            <h2>Create your account</h2>
+          </div>
+          <button type="button" class="icon-button" id="searchButton" aria-label="Search help">⌕</button>
+        </div>
+        <p id="searchFeedback" class="search-feedback" role="status" hidden>Need a hand? Start with the labeled fields below.</p>
+        <p class="signup-intro">Just two details to get started. This demo keeps everything in your browser.</p>
+
+        <form id="signupForm" novalidate>
+          <div class="signup-field">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" aria-describedby="emailHint emailError" aria-invalid="false" required>
+            <p class="signup-hint" id="emailHint">We’ll use this as your account sign-in.</p>
+            <p class="signup-error" id="emailError" aria-live="polite"></p>
+          </div>
+
+          <div class="signup-field">
+            <label for="password">Create a password</label>
+            <input type="password" id="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" aria-describedby="passwordHint passwordError" aria-invalid="false" minlength="8" required>
+            <p class="signup-hint" id="passwordHint">Use at least 8 characters.</p>
+            <p class="signup-error" id="passwordError" aria-live="polite"></p>
+          </div>
+
+          <button type="submit" class="signup-submit">Create account <span aria-hidden="true">→</span></button>
+          <p class="signup-result" id="signupResult" role="status" aria-live="polite"></p>
+        </form>
+
+        <a class="signup-logo-link" href="../index.html">← Week 9 · Access for Everyone</a>
+      </div>
+    </section>
+
+    <aside class="takeaway">
+      <span class="takeaway-mark" aria-hidden="true">✓</span>
+      <div>
+        <strong>Accessible by design</strong>
+        <p>Each label is connected to its field, instructions and errors are announced, and validation tells you what to fix.</p>
+      </div>
+    </aside>
+    <p class="site-credit">Week 9 accessibility lab · Mahmudjon</p>
+  </main>
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const signupResult = document.getElementById('signupResult');
+    const touchedFields = new Set();
+    const fieldChecks = [
+      {
+        input: emailInput,
+        error: document.getElementById('emailError'),
+        validate() {
+          if (!emailInput.value.trim()) return 'Enter your email address.';
+          if (emailInput.validity.typeMismatch) return 'Enter a valid email address, like you@example.com.';
+          return '';
+        }
+      },
+      {
+        input: passwordInput,
+        error: document.getElementById('passwordError'),
+        validate() {
+          if (!passwordInput.value) return 'Create a password to continue.';
+          if (passwordInput.value.length < 8) return 'Use at least 8 characters for your password.';
+          return '';
+        }
+      }
+    ];
+
+    function validateField(field) {
+      const message = field.validate();
+      field.input.setAttribute('aria-invalid', String(Boolean(message)));
+      field.error.textContent = message;
+      return !message;
+    }
+
+    fieldChecks.forEach((field) => {
+      field.input.addEventListener('blur', () => {
+        touchedFields.add(field.input);
+        validateField(field);
+      });
+      field.input.addEventListener('input', () => {
+        signupResult.textContent = '';
+        if (touchedFields.has(field.input)) validateField(field);
+      });
+    });
+
+    signupForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      fieldChecks.forEach(({ input }) => touchedFields.add(input));
+      const isValid = fieldChecks.map(validateField).every(Boolean);
+
+      if (!isValid) {
+        signupForm.querySelector('[aria-invalid="true"]').focus();
+        signupResult.textContent = 'Check the highlighted fields and try again.';
+        return;
+      }
+
+      signupResult.textContent = `Your demo account is ready for ${emailInput.value.trim()}. Your password stays private.`;
+    });
+
+    document.getElementById('searchButton').addEventListener('click', () => {
+      document.getElementById('searchFeedback').hidden = false;
+    });
+  </script>
+</body>
+</html>

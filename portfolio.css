@@ -120,7 +120,6 @@ a:focus-visible { outline: 3px solid var(--green); outline-offset: 4px; }
 .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag-list span { padding: 5px 8px; background: #e9eee5; color: #49604f; font: 8px var(--mono); }
 .project-hit-area { position: absolute; inset: 0; }
-.project-info:focus-within { outline: 2px solid var(--green); outline-offset: -3px; }
 .project-card:hover { border-color: #9bab98; }
 .project-hit-area:focus-visible { z-index: 1; outline: 3px solid var(--green); outline-offset: 3px; }
 .work-footnote { margin: 19px 0 0; color: #7a837b; font-size: 10px; }

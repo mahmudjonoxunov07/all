@@ -65,13 +65,13 @@ h1 { margin: 0; font-size: clamp(32px, 6vw, 46px); line-height: 1.15; }
 .commit-list { margin: 0; padding: 0; list-style: none; }
 .commit-list li {
   display: grid;
-  grid-template-columns: 115px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
-  gap: 16px;
+  gap: 12px;
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
 }
-.commit-list time, .commit-list code { color: var(--muted); font-size: 13px; }
+.commit-list code { color: var(--muted); font-size: 13px; }
 .commit-list code { font-family: Consolas, monospace; }
 .commit-message { overflow-wrap: anywhere; }
 .footer { min-height: 62px; margin-top: 38px; border-top: 1px solid var(--line); border-bottom: 0; }
@@ -79,8 +79,7 @@ h1 { margin: 0; font-size: clamp(32px, 6vw, 46px); line-height: 1.15; }
 @media (max-width: 560px) {
   .topbar, .footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 3px; padding: 10px 0; }
   .intro { padding-top: 36px; }
-  .commit-list li { grid-template-columns: minmax(0, 1fr) auto; gap: 3px 12px; }
-  .commit-list time { grid-column: 1 / -1; }
+  .commit-list li { gap: 6px 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior: auto !important; }

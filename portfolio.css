@@ -117,21 +117,14 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .work-heading h2 { margin-top: 8px; }
 .work-heading > p { max-width: 260px; margin: 0; color: var(--muted); }
 .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-.project-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 34% minmax(0, 1fr);
-  align-items: center;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
+.project-card { position: relative; overflow: hidden; border: 1px solid var(--line); }
 .project-image {
   display: block;
   width: 100%;
-  height: 100%;
-  min-height: 170px;
+  height: 140px;
   background: #f3f3f3;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center top;
 }
 .project-info { padding: 18px; }
 .project-title-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -163,8 +156,6 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
   .site-header nav { width: 100%; justify-content: space-between; }
   .work-heading { align-items: flex-start; flex-direction: column; gap: 8px; }
   .project-grid { grid-template-columns: 1fr; }
-  .project-card { display: block; }
-  .project-image { height: 180px; min-height: 0; }
   .site-footer { align-items: flex-start; flex-direction: column; justify-content: center; gap: 6px; padding-top: 14px; padding-bottom: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {

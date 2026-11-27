@@ -71,15 +71,15 @@ function App() {
               number="E1"
               id="profile-card"
               origin="Week 11_1 · Exercise 1"
-              title="A profile card with a default avatar"
-              description="Pass profile details into a reusable card; the first card uses its default avatar."
-              code={`function ProfileCard({ name, role, email, avatarUrl = defaultAvatar }) {
+              title="A profile card built from props"
+              description="Pass a name, role, and optional email into one reusable profile card."
+              code={`function ProfileCard({ name, role, email }) {
   return (
     <article>
-      <img src={avatarUrl} alt="" />
+      <span>{name.split(' ').map(part => part[0]).join('')}</span>
       <h3>{name}</h3>
       <p>{role}</p>
-      <a href={\`mailto:\${email}\`}>{email}</a>
+      {email && <a href={\`mailto:\${email}\`}>{email}</a>}
     </article>
   );
 }`}

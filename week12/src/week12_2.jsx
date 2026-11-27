@@ -1,6 +1,7 @@
 import { StrictMode, useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './week12_2.css';
+import './effects-design.css';
 
 function CodeDisclosure({ children }) {
   return (
@@ -220,12 +221,12 @@ function App() {
   return (
     <div className="page-shell">
       <header className="site-header">
-        <a className="wordmark" href="../../index.html" aria-label="Coursework home">XH<span>.</span></a>
+        <a className="wordmark" href="../../index.html" aria-label="Coursework home">MO<span>.</span></a>
         <nav aria-label="Page navigation">
           <a href="#samples">Samples</a>
           <a href="#exercises">Exercises</a>
         </nav>
-        <a className="header-link" href="../index.html">Shopping page <span aria-hidden="true">↗</span></a>
+        <a className="header-link" href="../index.html">Shopping cart <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="main-content">
@@ -235,6 +236,7 @@ function App() {
           <p className="lesson-intro">
             Use effects for work outside the render: browser APIs, timers, subscriptions, and network requests.
           </p>
+          <p className="author-credit">MAHMUDJON OKHUNOV <span>·</span> WEB PROGRAMMING</p>
           <div className="render-flow" aria-label="React effect render flow">
             <span><b>1</b> Render</span>
             <i>→</i>
@@ -356,7 +358,7 @@ const fullName = \`\${first} \${last}\`.trim();`}
       <footer className="site-footer">
         <a href="../../index.html">Coursework home <span aria-hidden="true">↑</span></a>
         <a href="./index.html">Week 12 · Shopping cart <span aria-hidden="true">↗</span></a>
-        <span>WEEK 12_2 · REACT EFFECTS</span>
+        <span>MAHMUDJON OKHUNOV · WEEK 12_2</span>
       </footer>
     </div>
   );

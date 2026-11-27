@@ -1,6 +1,7 @@
 import { StrictMode, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './week13_1.css';
+import './forms-design.css';
 
 function CodeDisclosure({ children }) {
   return (
@@ -283,7 +284,7 @@ function App() {
   return (
     <div className="page-shell">
       <header className="site-header">
-        <a className="wordmark" href="../../index.html" aria-label="Coursework home">XH<span>.</span></a>
+        <a className="wordmark" href="../../index.html" aria-label="Coursework home">MO<span>.</span></a>
         <nav aria-label="Page navigation">
           <a href="#samples">Samples</a>
           <a href="#exercises">Exercises</a>
@@ -300,6 +301,7 @@ function App() {
             Make forms predictable: React owns the value, the change event updates state,
             and submit logic stays in JavaScript.
           </p>
+          <p className="author-credit">MAHMUDJON OKHUNOV <span>·</span> WEB PROGRAMMING</p>
           <div className="render-flow" aria-label="Controlled input flow">
             <span><b>1</b> value</span>
             <i>→</i>
@@ -435,7 +437,7 @@ const file = fileRef.current.files[0];`}
       <footer className="site-footer">
         <a href="../../index.html">Coursework home <span aria-hidden="true">↑</span></a>
         <a href="./index.html">React Forms <span aria-hidden="true">↗</span></a>
-        <span>WEEK 13_1 · REACT FORMS</span>
+        <span>MAHMUDJON OKHUNOV · WEEK 13_1</span>
       </footer>
     </div>
   );

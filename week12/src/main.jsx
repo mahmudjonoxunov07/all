@@ -1,6 +1,7 @@
 import { StrictMode, useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './style.css';
+import './storefront-design.css';
 
 const products = [
   {
@@ -103,8 +104,8 @@ function App() {
     <div className="shop">
       <header className="shop-header">
         <a className="brand" href="../../index.html" aria-label="Back to coursework">
-          <span className="brand-mark" aria-hidden="true">N</span>
-          <span>NORTH / GOODS</span>
+          <span className="brand-mark" aria-hidden="true">MO</span>
+          <span>MAHMUDJON / MARKET</span>
         </a>
         <nav aria-label="Shop navigation">
           <a className="active" href="#products">Shop</a>
@@ -116,7 +117,7 @@ function App() {
         <section className="product-section" id="products" aria-labelledby="shop-title">
           <div className="title-row">
             <div>
-              <p className="eyebrow">WEEK 12 / REACT STATE</p>
+              <p className="eyebrow">MAHMUDJON OKHUNOV <span>·</span> WEEK 12 / REACT STATE</p>
               <h1 id="shop-title">Objects for daily life.</h1>
             </div>
             <p className="collection-count">{products.length} pieces</p>
@@ -207,6 +208,10 @@ function App() {
           </div>
         </aside>
       </main>
+      <footer className="shop-footer">
+        <a href="../../index.html">Coursework home <span aria-hidden="true">↗</span></a>
+        <span>Mahmudjon Okhunov · React state practice</span>
+      </footer>
     </div>
   );
 }

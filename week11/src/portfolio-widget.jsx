@@ -30,13 +30,8 @@ function ProjectBrief() {
       setMessage('Please add your name, a valid email, and a few project details.');
       return;
     }
-    setMessage(`Thanks, ${brief.name.trim()}. Your brief is saved and ready to send.`);
+    setMessage(`Thanks, ${brief.name.trim()}. Your brief is saved.`);
   }
-
-  const emailSubject = encodeURIComponent(`Project inquiry: ${brief.projectType || 'New project'}`);
-  const emailBody = encodeURIComponent(
-    `Name: ${brief.name}\nEmail: ${brief.email}\nProject type: ${brief.projectType || 'Not selected'}\n\n${brief.details}`,
-  );
 
   return (
     <form className="project-brief-form" onSubmit={submitBrief} noValidate>
@@ -75,9 +70,11 @@ function ProjectBrief() {
         {brief.name && brief.email && brief.details && (
           <a
             className="brief-email-link"
-            href={`mailto:xushnudbek76n@gmail.com?subject=${emailSubject}&body=${emailBody}`}
+            href="https://github.com/mahmudjonoxunov07"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            Open email <span aria-hidden="true">↗</span>
+            Find me on GitHub <span aria-hidden="true">↗</span>
           </a>
         )}
       </div>

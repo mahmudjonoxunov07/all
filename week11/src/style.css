@@ -1,0 +1,394 @@
+.code-disclosure summary:focus-visible {
+  outline: 3px solid #b96845;
+  outline-offset: 3px;
+}
+
+.card-kicker {
+  margin: 0 0 8px;
+  color: #777d73;
+  font-size: .55rem;
+  font-weight: 750;
+  letter-spacing: .12em;
+}
+
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 34px;
+}
+
+.exercise-card {
+  min-width: 0;
+  padding-top: 17px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 20px;
+}
+
+.exercise-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.exercise-number {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  background: #f8e9e3;
+  color: #b8400f;
+  font-size: .88rem;
+  font-weight: 750;
+}
+
+.exercise-origin {
+  margin: 0 0 4px;
+  color: #777d73;
+  font-size: .55rem;
+  font-weight: 750;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.exercise-heading h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -.03em;
+}
+
+.exercise-description {
+  min-height: 44px;
+  margin: 13px 0;
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.exercise-demo {
+  min-height: 140px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: #fbfcfa;
+}
+
+.greeting-stack {
+  display: grid;
+  gap: 4px;
+}
+
+.greeting {
+  margin: 0;
+  color: var(--ink);
+  font-size: .83rem;
+  font-weight: 650;
+}
+
+.mini-card {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.mini-card h3 {
+  margin: 0 0 7px;
+  font-size: .93rem;
+  letter-spacing: -.02em;
+}
+
+.mini-card p {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: .68rem;
+}
+
+.mini-card .card-kicker {
+  margin-bottom: 8px;
+}
+
+.student-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.profile-card {
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-2px);
+  border-color: #b6c4b8;
+}
+
+.profile-card .card-header {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.profile-card .student-name {
+  margin: 0;
+  font-size: .88rem;
+}
+
+.profile-card .student-id {
+  color: var(--muted);
+  font-size: .62rem;
+}
+
+.profile-card .card-body {
+  padding-top: 10px;
+}
+
+.profile-card .card-body p {
+  margin: 0 0 5px;
+}
+
+.profile-card .card-body p:last-child {
+  margin-bottom: 0;
+}
+
+.mini-card a {
+  color: var(--green);
+  font-size: .67rem;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+
+.demo-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.profile-demo-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.profile-avatar {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.notification-list,
+.grade-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.notification-list {
+  display: grid;
+  gap: 9px;
+}
+
+.notification-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.notification-filter-button {
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: .62rem;
+  cursor: pointer;
+}
+
+.notification-filter-button[aria-pressed="true"] {
+  border-color: var(--green);
+  background: #edf3ee;
+  color: #385340;
+}
+
+.notification-count {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: .62rem;
+}
+
+.notification-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.notification {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--ink);
+  font-size: .72rem;
+}
+
+.notification-icon {
+  display: inline-flex;
+  width: 23px;
+  height: 23px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--green);
+  font-size: .68rem;
+  font-weight: 750;
+}
+
+.notification-warning .notification-icon {
+  color: #a56a16;
+}
+
+.content-card .card-content {
+  color: var(--muted);
+  font-size: .72rem;
+}
+
+.product-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.product-card {
+  transition: background 160ms ease;
+}
+
+.product-card.is-sold-out {
+  background: #f0f1ee;
+}
+
+.product-card .product-price {
+  color: var(--ink);
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+.product-card .product-rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.product-rating span:first-child {
+  color: #9a6b1f;
+  letter-spacing: .05em;
+}
+
+.product-card .stock-status {
+  margin: 9px 0 0;
+  color: var(--green);
+  font-weight: 700;
+}
+
+.product-card.is-sold-out .stock-status {
+  color: #777d73;
+}
+
+.grade-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: .74rem;
+}
+
+.grade-list li:first-child {
+  padding-top: 0;
+}
+
+.grade-list li:last-child {
+  border-bottom: 0;
+}
+
+.demo-alert {
+  margin: 0 0 10px;
+  padding: 8px 10px;
+  border-left: 3px solid #ad6346;
+  background: #f8efeb;
+  color: #684536;
+  font-size: .7rem;
+}
+
+.alert-success {
+  border-color: var(--green);
+  background: #edf3ee;
+  color: #385340;
+}
+
+.welcome-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 5px;
+}
+
+.welcome-panel p {
+  margin: 0;
+  font-size: .72rem;
+}
+
+.code-disclosure {
+  margin-top: 12px;
+}
+
+.code-disclosure summary {
+  width: fit-content;
+  color: var(--green);
+  cursor: pointer;
+  font-size: .67rem;
+  font-weight: 700;
+}
+
+.code-disclosure pre {
+  max-width: 100%;
+  margin: 10px 0 0;
+  padding: 14px;
+  overflow-x: auto;
+  background: #f1f3f0;
+  color: #303630;
+  font: .67rem/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+  white-space: pre;
+}
+
+@media (max-width: 620px) {
+  .exercise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .exercise-description {
+    min-height: 0;
+  }
+
+  .demo-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .student-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card {
+    transition: none;
+  }
+}

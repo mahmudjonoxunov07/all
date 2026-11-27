@@ -1,0 +1,287 @@
+.state-exercise-demo {
+  display: flex;
+  align-items: flex-start;
+}
+
+.state-counter,
+.state-form,
+.state-task-demo,
+.state-toggle-demo {
+  width: 100%;
+}
+
+.state-counter-value {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--ink);
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: -.06em;
+  line-height: 1;
+}
+
+.state-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.state-button,
+.state-text-button,
+.state-remove-button {
+  min-height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: .67rem;
+  font-weight: 650;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.state-button:hover,
+.state-remove-button:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.state-button:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.state-button-primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+
+.state-button-primary:hover {
+  border-color: var(--green);
+  background: var(--green);
+  color: white;
+}
+
+.state-text-button {
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+}
+
+.state-text-button:hover {
+  color: var(--green);
+}
+
+.state-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-size: .68rem;
+  font-weight: 700;
+}
+
+.state-input {
+  width: 100%;
+  min-width: 0;
+  min-height: 39px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: .72rem;
+}
+
+.state-input:focus-visible,
+.state-button:focus-visible,
+.state-text-button:focus-visible,
+.state-remove-button:focus-visible {
+  outline: 3px solid #b96845;
+  outline-offset: 3px;
+}
+
+.state-preview {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: .78rem;
+}
+
+.state-preview strong {
+  color: var(--green);
+}
+
+.state-task-form {
+  display: flex;
+  gap: 8px;
+}
+
+.state-task-form .state-button {
+  flex: 0 0 auto;
+}
+
+.state-task-list {
+  display: grid;
+  gap: 5px;
+  margin: 13px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.state-task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: .7rem;
+}
+
+.state-remove-button {
+  min-height: 28px;
+  flex: 0 0 auto;
+  padding: 0 7px;
+  color: var(--muted);
+  font-size: .6rem;
+}
+
+.state-empty {
+  margin: 13px 0 0;
+  color: var(--muted);
+  font-size: .7rem;
+}
+
+.state-details {
+  margin: 14px 0 0;
+  padding: 12px;
+  border-left: 2px solid var(--green);
+  background: #edf3ee;
+  color: #385340;
+  font-size: .72rem;
+}
+
+.completed-task-demo,
+.profile-form,
+.saved-note-demo {
+  width: 100%;
+}
+
+.task-filter-buttons {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.task-filter-button {
+  min-height: 28px;
+  padding: 0 9px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: .62rem;
+  cursor: pointer;
+}
+
+.task-filter-button[aria-pressed="true"] {
+  border-color: var(--green);
+  background: #edf3ee;
+  color: #385340;
+}
+
+.completed-task-list {
+  display: grid;
+  gap: 7px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+
+.completed-task-list label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: .7rem;
+  cursor: pointer;
+}
+
+.completed-task-list input {
+  accent-color: var(--green);
+}
+
+.task-is-complete {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.profile-form {
+  display: grid;
+  gap: 8px;
+}
+
+.profile-form .state-label {
+  margin-bottom: -3px;
+}
+
+.profile-form .state-button {
+  justify-self: start;
+  margin-top: 2px;
+}
+
+.profile-message {
+  margin: 2px 0 0;
+  color: var(--green);
+  font-size: .68rem;
+}
+
+.state-textarea {
+  width: 100%;
+  min-height: 86px;
+  resize: vertical;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: .72rem;
+}
+
+.state-textarea:focus-visible {
+  outline: 3px solid #b96845;
+  outline-offset: 3px;
+}
+
+.saved-note-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.saved-note-status {
+  margin: 0;
+  color: var(--muted);
+  font-size: .62rem;
+}
+
+@media (max-width: 400px) {
+  .state-task-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .state-button,
+  .state-text-button,
+  .state-remove-button {
+    transition: none;
+  }
+}

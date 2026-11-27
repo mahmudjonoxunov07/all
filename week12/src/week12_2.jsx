@@ -226,7 +226,7 @@ function App() {
           <a href="#samples">Samples</a>
           <a href="#exercises">Exercises</a>
         </nav>
-        <a className="header-link" href="../index.html">Shopping cart <span aria-hidden="true">↗</span></a>
+        <a className="header-link" href="./index.html">Shopping cart <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="main-content">

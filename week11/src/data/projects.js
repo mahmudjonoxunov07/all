@@ -7,7 +7,7 @@ export const projects = [
     description: 'A set of interactive demos for requesting public API data and rendering useful results.',
     techStack: ['JavaScript', 'Fetch API', 'JSON'],
     githubLink: 'https://github.com/mahmudjonoxunov07/all/tree/main/week6',
-    demoLink: '../../week6/index.html',
+    demoLink: 'https://mahmudjonoxunov07.github.io/all/week6/index.html',
   },
   {
     id: 'book-finder',
@@ -17,7 +17,7 @@ export const projects = [
     description: 'Search Open Library and explore matching titles, authors, and publication details.',
     techStack: ['JavaScript', 'Open Library', 'Fetch API'],
     githubLink: 'https://github.com/mahmudjonoxunov07/all/tree/main/week7',
-    demoLink: '../../week7/index.html',
+    demoLink: 'https://mahmudjonoxunov07.github.io/all/week7/index.html',
   },
   {
     id: 'form-studio',
@@ -27,7 +27,7 @@ export const projects = [
     description: 'A form practice project focused on clear input design, validation, and helpful feedback.',
     techStack: ['HTML', 'CSS', 'JavaScript', 'Forms'],
     githubLink: 'https://github.com/mahmudjonoxunov07/all/tree/main/week8',
-    demoLink: '../../week8/index.html',
+    demoLink: 'https://mahmudjonoxunov07.github.io/all/week8/index.html',
   },
   {
     id: 'accessible-coursework',
@@ -37,7 +37,7 @@ export const projects = [
     description: 'Practice keyboard access, image descriptions, accessible forms, and inclusive design fixes.',
     techStack: ['HTML', 'CSS', 'Accessibility'],
     githubLink: 'https://github.com/mahmudjonoxunov07/all/tree/main/week9',
-    demoLink: '../../week9/index.html',
+    demoLink: 'https://mahmudjonoxunov07.github.io/all/week9/index.html',
   },
   {
     id: 'react-components',
@@ -47,7 +47,7 @@ export const projects = [
     description: 'Build reusable cards, render lists, and control conditional content with component props.',
     techStack: ['React', 'JavaScript', 'Components'],
     githubLink: 'https://github.com/mahmudjonoxunov07/all/tree/main/week11',
-    demoLink: './index.html',
+    demoLink: 'https://mahmudjonoxunov07.github.io/all/week11/dist/index.html',
   },
   {
     id: 'react-state',
@@ -57,6 +57,6 @@ export const projects = [
     description: 'Explore counters, controlled forms, dynamic lists, filters, and persistent state.',
     techStack: ['React', 'JavaScript', 'useState'],
     githubLink: 'https://github.com/mahmudjonoxunov07/all/tree/main/week11',
-    demoLink: './week11_2.html',
+    demoLink: 'https://mahmudjonoxunov07.github.io/all/week11/dist/week11_2.html',
   },
 ];

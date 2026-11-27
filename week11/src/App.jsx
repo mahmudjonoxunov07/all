@@ -76,7 +76,6 @@ function App() {
               code={`function ProfileCard({ name, role, email }) {
   return (
     <article>
-      <span>{name.split(' ').map(part => part[0]).join('')}</span>
       <h3>{name}</h3>
       <p>{role}</p>
       {email && <a href={\`mailto:\${email}\`}>{email}</a>}

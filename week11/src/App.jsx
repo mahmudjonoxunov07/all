@@ -1,4 +1,3 @@
-import myPhoto from '../../assets/xushnudbek.jpg';
 import '../../portfolio.css';
 import Card from './components/Card.jsx';
 import ConditionalDemo from './components/ConditionalDemo.jsx';
@@ -11,6 +10,7 @@ import StudentCard from './components/StudentCard.jsx';
 import StudentList from './components/StudentList.jsx';
 import { notifications, profile, studentProfiles, studentsForList } from './data/exercises.js';
 import './style.css';
+import './course-design.css';
 
 function CodeDisclosure({ children }) {
   return (
@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="page-shell">
       <header className="site-header">
-        <a className="wordmark" href="../../index.html" aria-label="Coursework home">XH<span>.</span></a>
+        <a className="wordmark" href="../../index.html" aria-label="Coursework home">MO<span>.</span></a>
         <nav className="site-nav" aria-label="Week 11 navigation">
           <a href="#practice">Practice</a>
         </nav>
@@ -50,6 +50,13 @@ function App() {
       </header>
 
       <main id="main-content">
+        <section className="course-hero" aria-labelledby="course-title">
+          <p className="course-overline">MAHMUDJON OKHUNOV <span>·</span> WEB PROGRAMMING</p>
+          <h1 id="course-title">Build once.<br /><em>Reuse everywhere.</em></h1>
+          <p>Week 11 · React components, props, and reusable interface patterns.</p>
+          <a href="#practice">Explore the exercises <span aria-hidden="true">↓</span></a>
+        </section>
+
         <section className="section practice-section" id="practice" aria-labelledby="practice-title">
           <div className="section-heading">
             <div>
@@ -83,7 +90,6 @@ function App() {
                   name={profile.name}
                   role={profile.role}
                   email={profile.email}
-                  avatarUrl={myPhoto}
                 />
               </div>
             </Exercise>
@@ -272,7 +278,7 @@ const visibleProjects = activeFilter === 'All'
 {user && <p>Welcome, {user.name}.</p>}
 {!user && <p>Please sign in.</p>}
 
-<button onClick={() => setUser(user ? null : { name: 'Xushnudbek' })}>
+<button onClick={() => setUser(user ? null : { name: 'Mahmudjon' })}>
   {user ? 'Sign out' : 'Sign in'}
 </button>`}
             >
@@ -285,7 +291,7 @@ const visibleProjects = activeFilter === 'All'
 
       <footer className="site-footer">
         <a className="footer-home" href="../../index.html">Coursework home <span aria-hidden="true">↑</span></a>
-        <a href="../../portfolio.html">Xushnudbek <span aria-hidden="true">↗</span></a>
+        <a href="../../portfolio.html">Mahmudjon Okhunov <span aria-hidden="true">↗</span></a>
         <span>WEEK 11_1 <span aria-hidden="true">·</span> REACT COMPONENTS &amp; PROPS</span>
       </footer>
     </div>

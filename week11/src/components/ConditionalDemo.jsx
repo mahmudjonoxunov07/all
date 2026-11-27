@@ -18,7 +18,7 @@ function ConditionalDemo() {
         <button
           className="filter-button"
           type="button"
-          onClick={() => setUser(user ? null : { name: 'Xushnudbek' })}
+          onClick={() => setUser(user ? null : { name: 'Mahmudjon' })}
         >
           {user ? 'Sign out' : 'Sign in'}
         </button>

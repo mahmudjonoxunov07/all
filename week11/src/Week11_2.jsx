@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../../portfolio.css';
 import './style.css';
 import './week11_2.css';
+import './course-design.css';
 
 const initialTasks = [
   { id: 1, title: 'Review component props' },
@@ -119,15 +120,22 @@ function App() {
   return (
     <div className="page-shell">
       <header className="site-header">
-        <a className="wordmark" href="../../index.html" aria-label="Coursework home">XH<span>.</span></a>
+        <a className="wordmark" href="../../index.html" aria-label="Coursework home">MO<span>.</span></a>
         <nav className="site-nav" aria-label="Week 11_2 navigation">
           <a href="#practice">Practice</a>
           <a href="./index.html">Week 11_1</a>
         </nav>
-        <a className="header-link" href="../../portfolio.html">Portfolio <span aria-hidden="true">↗</span></a>
+        <a className="header-link" href="../../portfolio.html">Mahmudjon Okhunov <span aria-hidden="true">↗</span></a>
       </header>
 
       <main id="main-content">
+        <section className="course-hero" aria-labelledby="course-title">
+          <p className="course-overline">MAHMUDJON OKHUNOV <span>·</span> WEB PROGRAMMING</p>
+          <h1 id="course-title">State makes<br /><em>interfaces move.</em></h1>
+          <p>Week 11 · Counters, forms, lists, and conditional UI in React.</p>
+          <a href="#practice">Try the live demos <span aria-hidden="true">↓</span></a>
+        </section>
+
         <section className="section practice-section" id="practice" aria-labelledby="practice-title">
           <div className="section-heading">
             <div>

@@ -12,7 +12,7 @@ function ProfileCard({ name, role, email, avatarUrl = defaultAvatar }) {
         <p className="card-kicker">PROFILE</p>
         <h3>{name}</h3>
         <p>{role}</p>
-        <a href={`mailto:${email}`}>{email}</a>
+        {email && <a href={`mailto:${email}`}>{email}</a>}
       </div>
     </article>
   );

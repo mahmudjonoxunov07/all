@@ -172,14 +172,6 @@
   gap: 12px;
 }
 
-.profile-avatar {
-  width: 52px;
-  height: 52px;
-  flex: 0 0 auto;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
 .notification-list,
 .grade-list {
   margin: 0;
